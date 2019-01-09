@@ -58,6 +58,22 @@ class Character:
         return self._cls
 
 
+def character_generator(evil_permitted=False):
+    if evil_permitted:
+        alignment = alignments[int(random() * len(alignments))]
+    else:
+        alignment = alignments_modded[int(random()
+                                          * len(alignments_modded))]
+
+    race = races[int(random() * len(races))]
+
+    cls = classes[int(random() * len(classes))]
+
+    c = Character(race=race, alignment=alignment, cls=cls)
+
+    return c
+
+
 if __name__ == '__main__':
     try:
         if sys.argv[1] == '--evil-permitted' or sys.argv[1] == '-ep':
