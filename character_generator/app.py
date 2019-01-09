@@ -48,6 +48,10 @@ class Character:
         self._alignment = alignment
         self._cls = cls
 
+    def __repr__(self):
+        return f"<Character '{self._race}', '{self._alignment[0]} " \
+            f"{self._alignment[1]}', '{self._cls}'>"
+
     def race(self):
         return self._race
 
