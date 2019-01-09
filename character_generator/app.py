@@ -43,6 +43,10 @@ alignments_modded = [['Lawful', 'Good'],
 
 
 class Character:
+    """A class defining generated characters. Use the
+    'character_generator' method to randomly generate values for a
+    character."""
+
     def __init__(self, race, alignment, cls):
         self._race = race
         self._alignment = alignment
@@ -53,16 +57,30 @@ class Character:
             f"{self._alignment[1]}', '{self._cls}'>"
 
     def race(self):
+        """Return race as a string."""
         return self._race
 
     def alignment(self):
+        """Return alignment as a list."""
         return self._alignment
 
     def cls(self):
+        """Return class as a string."""
         return self._cls
 
 
 def character_generator(evil_permitted=False):
+    """Generate random values for a Character, then return the newly
+    generated character.
+
+    Arguments:
+        evil_permitted: Set to True to include evil alignments in random
+        alignment generation. Default: False
+
+    Returns:
+        c: A Character instance.
+    """
+
     if evil_permitted:
         alignment = alignments[int(random() * len(alignments))]
     else:
