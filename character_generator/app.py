@@ -97,21 +97,12 @@ def character_generator(evil_permitted=False):
 
 
 if __name__ == '__main__':
-    try:
-        if sys.argv[1] == '--evil-permitted' or sys.argv[1] == '-ep':
-            alignment = alignments[int(random() * len(alignments))]
-        else:
-            alignment = alignments_modded[int(random()
-                                              * len(alignments_modded))]
-    except IndexError:
-        alignment = alignments_modded[int(random()
-                                          * len(alignments_modded))]
+    if '--evil-permitted' in sys.argv or '-ep' in sys.argv:
+        evil_permitted = True
+    else:
+        evil_permitted = False
 
-    race = races[int(random() * len(races))]
-
-    cls = classes[int(random() * len(classes))]
-
-    c = Character(race=race, alignment=alignment, cls=cls)
+    c = character_generator(evil_permitted=evil_permitted)
 
     print(f'''Race: {c.race()}
 Alignment: {c.alignment()[0]} {c.alignment()[1]}
