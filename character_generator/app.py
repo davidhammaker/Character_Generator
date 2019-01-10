@@ -187,8 +187,8 @@ class Character:
         return self._weight
 
     def alignment(self):
-        """Return alignment as a list."""
-        return self._alignment
+        """Return alignment as a string."""
+        return f'{self._alignment[0]} {self._alignment[1]}'
 
     def cls(self):
         """Return class as a string."""
