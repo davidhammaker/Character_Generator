@@ -288,12 +288,12 @@ def character_generator(evil_permitted=False):
         wt_dice_value = formula[5]
 
         # Determine height
-        height_mod = ht_dice_count * int(random() * ht_dice_value)
-        height = base_height + height_mod + 1
+        height_mod = roll(ht_dice_count, ht_dice_value)
+        height = base_height + height_mod
 
         # Determine weight
-        weight_mod = wt_dice_count * int(random() * wt_dice_value)
-        weight = base_weight + ((height_mod + 1) * (weight_mod + 1))
+        weight_mod = roll(wt_dice_count, wt_dice_value)
+        weight = base_weight + ((height_mod) * (weight_mod))
 
         return height, weight
 
