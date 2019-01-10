@@ -180,70 +180,84 @@ def character_generator(evil_permitted=False):
     generated character.
 
     Arguments:
-        evil_permitted: Set to True to include evil alignments in random
+        evil_permitted: bool; True to include evil alignments in random
         alignment generation. Default: False
 
     Returns:
-        c: A Character instance.
+        new_character: A Character instance.
     """
 
+    # Determine whether alignments may be evil
     if evil_permitted:
         alignment = alignments[int(random() * len(alignments))]
     else:
         alignment = alignments_modded[int(random()
                                           * len(alignments_modded))]
 
+    # Select a race
     race = races[int(random() * len(races))]
 
     # Select a subrace
     subrace = None
     for selection in subraces:
+
+        # Subrace selection for non-humans
         if race != 'Human' and race in selection:
             subrace = selection[1][int(random() * len(selection[1]))]
+
         # Human ethnicity and standard/variant selection
         elif race == 'Human' and race in selection:
             types = selection[1][0]
-            ethnicities = selection[1][1]
+            ethnic_groups = selection[1][1]
             subrace = f'{types[int(random() * len(types))]} ' \
-                f'({ethnicities[int(random() * len(ethnicities))]})'
-    # Specify type of High Elf
+                f'({ethnic_groups[int(random() * len(ethnic_groups))]})'
+
+    # Specify type of High Elf, if applicable
     if subrace:
         if 'High Elf' in subrace:
             subrace = f'High Elf ' \
                 f'({subrace[1][int(random() * len(subrace[1]))]})'
 
+    # Select a class
     cls = classes[int(random() * len(classes))]
 
     # Select an archetype
     archetype = None
     for selection in archetypes:
+
+        # Archetype selection for non-warlocks
         if cls != 'Warlock' and cls in selection:
             archetype = selection[1][int(random() * len(selection[1]))]
+
         # Warlock Archetype selection (Patron and Pact)
         elif cls == 'Warlock' and cls in selection:
             patrons = selection[1][0]
             pacts = selection[1][1]
             archetype = f'{patrons[int(random() * len(patrons))]} ' \
                 f'({pacts[int(random() * len(pacts))]})'
-    # Specify Druid's Land
+
+    # Specify Druid's Land, if applicable
     if 'Circle of the Land' in archetype:
         archetype = f'Circle of the Land ' \
             f'({archetype[1][int(random() * len(archetype[1]))]})'
-    # Specify Sorcerer's Dragon
+
+    # Specify Sorcerer's Dragon, if applicable
     if 'Draconic Bloodline' in archetype:
         archetype = f'Draconic Bloodline ' \
             f'({archetype[1][int(random() * len(archetype[1]))]})'
 
+    # Select background
     background = backgrounds[int(random() * len(backgrounds))]
 
-    c = Character(race=race,
-                  alignment=alignment,
-                  cls=cls,
-                  background=background,
-                  subrace=subrace,
-                  archetype=archetype)
+    # Generate character
+    new_character = Character(race=race,
+                              alignment=alignment,
+                              cls=cls,
+                              background=background,
+                              subrace=subrace,
+                              archetype=archetype)
 
-    return c
+    return new_character
 
 
 if __name__ == '__main__':
@@ -252,9 +266,9 @@ if __name__ == '__main__':
     else:
         evil_permitted = False
 
-    c = character_generator(evil_permitted=evil_permitted)
+    new_character = character_generator(evil_permitted=evil_permitted)
 
-    print(f'''Race: {c.race()}
-Subrace: {c.subrace()}
-Alignment: {c.alignment()[0]} {c.alignment()[1]}
-Class: {c.cls()}''')
+    print(f'''Race: {new_character.race()}
+Subrace: {new_character.subrace()}
+Alignment: {new_character.alignment()[0]} {new_character.alignment()[1]}
+Class: {new_character.cls()}''')
