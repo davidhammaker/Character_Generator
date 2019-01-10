@@ -156,11 +156,12 @@ class Character:
     character."""
 
     def __init__(self, race, height, weight, alignment, cls, background,
-                 subrace=None, archetype=None):
+                 gender, subrace=None, archetype=None):
         self._race = race
         self._subrace = subrace
         self._height = height
         self._weight = weight
+        self._gender = gender
         self._alignment = alignment
         self._cls = cls
         self._background = background
@@ -185,6 +186,10 @@ class Character:
     def weight(self):
         """Return weight as a string."""
         return self._weight
+
+    def gender(self):
+        """Return gender as a string."""
+        return self._gender
 
     def alignment(self):
         """Return alignment as a string."""
@@ -320,6 +325,10 @@ def character_generator(evil_permitted=False):
     # Clean up weight
     weight = f'{weight_raw} lb.'
 
+    # Select gender
+    genders = ['Male', 'Female']
+    gender = genders[round(random())]
+
     # Select a class
     cls = classes[int(random() * len(classes))]
 
@@ -359,7 +368,8 @@ def character_generator(evil_permitted=False):
                               subrace=subrace,
                               archetype=archetype,
                               height=height,
-                              weight=weight)
+                              weight=weight,
+                              gender=gender)
 
     return new_character
 
