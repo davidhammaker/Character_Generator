@@ -29,6 +29,23 @@ subraces = [['Dwarf', ['Hill Dwarf', 'Mountain Dwarf']],
                         'Turami']]],
             ['Gnome', ['Forest Gnome', 'Rock Gnome']]]
 
+# Numbers: Base height, height modifier dice count, height modifier dice
+# value, base weight, weight modifier dice count, weight modifier dice
+# value. Exception: Halflings and Gnomes add height modifier to weight.
+sizes = [['Human', [56, 2, 10, 110, 2, 4]],
+         ['Hill Dwarf', [44, 2, 4, 115, 2, 6]],
+         ['Mountain Dwarf', [48, 2, 4, 130, 2, 6]],
+         ['High Elf (Sun Elf)', [54, 2, 10, 90, 1, 4]],
+         ['High Elf (Moon Elf)', [54, 2, 10, 90, 1, 4]],
+         ['Wood Elf', [54, 2, 10, 100, 1, 4]],
+         ['Dark Elf (Drow)', [53, 2, 6, 75, 1, 6]],
+         ['Halfling', [31, 2, 4, 35, 1, 1]],
+         ['Dragonborn', [66, 2, 8, 175, 2, 6]],
+         ['Gnome', [35, 2, 4, 35, 1, 1]],
+         ['Half-Elf', [57, 2, 8, 110, 2, 4]],
+         ['Half-Orc', [58, 2, 10, 140, 2, 6]],
+         ['Tiefling', [57, 2, 8, 110, 2, 4]]]
+
 classes = ['Barbarian',
            'Bard',
            'Cleric',
@@ -138,10 +155,12 @@ class Character:
     'character_generator' method to randomly generate values for a
     character."""
 
-    def __init__(self, race, alignment, cls, background, subrace=None,
-                 archetype=None):
+    def __init__(self, race, height, weight, alignment, cls, background,
+                 subrace=None, archetype=None):
         self._race = race
         self._subrace = subrace
+        self._height = height
+        self._weight = weight
         self._alignment = alignment
         self._cls = cls
         self._background = background
@@ -156,7 +175,16 @@ class Character:
         return self._race
 
     def subrace(self):
+        """Return subrace as a string."""
         return self._subrace
+
+    def height(self):
+        """Return height as a string."""
+        return self._height
+
+    def weight(self):
+        """Return weight as a string."""
+        return self._weight
 
     def alignment(self):
         """Return alignment as a list."""
@@ -218,6 +246,64 @@ def character_generator(evil_permitted=False):
             subrace = f'High Elf ' \
                 f'({subrace[1][int(random() * len(subrace[1]))]})'
 
+    # Determine height and weight
+    weight_raw = None
+    height_raw = None
+
+    def get_height_weight(formula):
+        """Calculates the height and weight of a character.
+
+        Arguments:
+            formula: list; in order, items in the list are base height,
+            height modifier dice count, height modifier dice value, base
+            weight, weight modifier dice count, weight modifier dice
+            value.
+
+        Returns:
+            height: int; height of the character.
+            weight: int; weight of the character.
+        """
+
+        base_height = formula[0]
+        ht_dice_count = formula[1]
+        ht_dice_value = formula[2]
+        base_weight = formula[3]
+        wt_dice_count = formula[4]
+        wt_dice_value = formula[5]
+
+        # Determine height
+        height_mod = ht_dice_count * int(random() * ht_dice_value)
+        height = base_height + height_mod + 1
+
+        # Determine weight
+        weight_mod = wt_dice_count * int(random() * wt_dice_value)
+        weight = base_weight + ((height_mod + 1) * (weight_mod + 1))
+
+        return height, weight
+
+    # Height and weight for dwarves and elves
+    if race == 'Dwarf' or race == 'Elf':
+        for formula in sizes:
+            if subrace in formula:
+                height_raw, weight_raw = get_height_weight(formula[1])
+
+    # Height and weight for other races
+    else:
+        for formula in sizes:
+            if race in formula:
+                height_raw, weight_raw = get_height_weight(formula[1])
+
+    # Clean up height
+    feet = 0
+    inches = height_raw
+    while inches >= 12:
+        inches -= 12
+        feet += 1
+    height = f'{feet}\'{inches}"'
+
+    # Clean up weight
+    weight = f'{weight_raw} lb.'
+
     # Select a class
     cls = classes[int(random() * len(classes))]
 
@@ -255,7 +341,9 @@ def character_generator(evil_permitted=False):
                               cls=cls,
                               background=background,
                               subrace=subrace,
-                              archetype=archetype)
+                              archetype=archetype,
+                              height=height,
+                              weight=weight)
 
     return new_character
 
