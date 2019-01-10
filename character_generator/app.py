@@ -250,8 +250,24 @@ def character_generator(evil_permitted=False):
     weight_raw = None
     height_raw = None
 
+    def roll(count, value):
+        """Return a total value from rolled dice.
+
+        Arguments:
+            count: int; the number of dice to roll.
+            value: int; the value of each die.
+
+        Returns:
+            total: int; the sum total of all rolls.
+        """
+
+        total = 0
+        for _ in range(count):
+            total += int(random() * value) + 1
+        return total
+
     def get_height_weight(formula):
-        """Calculates the height and weight of a character.
+        """Calculate the height and weight of a character.
 
         Arguments:
             formula: list; in order, items in the list are base height,
