@@ -16,7 +16,17 @@ subraces = [['Dwarf', ['Hill Dwarf', 'Mountain Dwarf']],
                      'Wood Elf',
                      'Dark Elf (Drow)']],
             ['Halfling', ['Lightfoot', 'Stout']],
-            ['Human', ['Standard', 'Variant']],
+            ['Human', [['Standard',
+                        'Variant'],
+                       ['Calishite',
+                        'Chondathan',
+                        'Damaran',
+                        'Illuskan',
+                        'Mulan',
+                        'Rashemi',
+                        'Shou',
+                        'Tethyrian',
+                        'Turami']]],
             ['Gnome', ['Forest Gnome', 'Rock Gnome']]]
 
 classes = ['Barbarian',
@@ -188,8 +198,14 @@ def character_generator(evil_permitted=False):
     # Select a subrace
     subrace = None
     for selection in subraces:
-        if race in selection:
+        if race != 'Human' and race in selection:
             subrace = selection[1][int(random() * len(selection[1]))]
+        # Human ethnicity and standard/variant selection
+        elif race == 'Human' and race in selection:
+            types = selection[1][0]
+            ethnicities = selection[1][1]
+            subrace = f'{types[int(random() * len(types))]} ' \
+                f'({ethnicities[int(random() * len(ethnicities))]})'
     # Specify type of High Elf
     if subrace:
         if 'High Elf' in subrace:
