@@ -313,7 +313,7 @@ def character_generator(evil_permitted=False, level=1):
         level = 20
 
     # Select a race
-    race = select(list(races.keys()))
+    race = select(list(races))
 
     # Select a subrace
     subrace = None
@@ -326,12 +326,9 @@ def character_generator(evil_permitted=False, level=1):
             # Select meta_subrace (High Elf, Wood Elf, Drow)
             meta_subrace = select(list(subraces))
 
-            # Identify types of each meta_subrace (High elves will
-            # have multiple types)
-            types = subraces[meta_subrace]['types']
-
-            # Select subrace from types
-            subrace = select(types)
+            # Select subrace from types(High elves will have multiple
+            # types)
+            subrace = select(subraces[meta_subrace]['types'])
 
         # Subrace selection for humans
         elif race == 'Human':
