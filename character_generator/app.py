@@ -103,12 +103,9 @@ archetypes = [['Barbarian', ['Path of the Berserker',
                                                     'Silver',
                                                     'White']],
                             'Wild Magic']],
-              ['Warlock', [['The Archfey',
-                            'The Fiend',
-                            'The Great Old One'],
-                           ['Pact of the Chain',
-                            'Pact of the Blade',
-                            'Pact of the Tome']]],
+              ['Warlock', ['The Archfey',
+                           'The Fiend',
+                           'The Great Old One']],
               ['Wizard', ['School of Abjuration',
                           'School of Conjuration',
                           'School of Divination',
@@ -355,17 +352,8 @@ def character_generator(evil_permitted=False, level=1):
     # Select an archetype
     archetype = None
     for selection in archetypes:
-
-        # Archetype selection for non-warlocks
-        if cls != 'Warlock' and cls in selection:
+        if cls in selection:
             archetype = selection[1][int(random() * len(selection[1]))]
-
-        # Warlock Archetype selection (Patron and Pact)
-        elif cls == 'Warlock' and cls in selection:
-            patrons = selection[1][0]
-            pacts = selection[1][1]
-            archetype = f'{patrons[int(random() * len(patrons))]} ' \
-                f'({pacts[int(random() * len(pacts))]})'
 
     # Specify Druid's Land, if applicable
     if 'Circle of the Land' in archetype:
