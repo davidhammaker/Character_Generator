@@ -156,7 +156,7 @@ class Character:
     character."""
 
     def __init__(self, race, height, weight, alignment, cls, background,
-                 gender, subrace=None, archetype=None):
+                 gender, subrace=None, archetype=None, level=1):
         self._race = race
         self._subrace = subrace
         self._height = height
@@ -166,6 +166,7 @@ class Character:
         self._cls = cls
         self._background = background
         self._archetype = archetype
+        self._level = level
 
     def __repr__(self):
         return f"<Character '{self._race}', '{self._alignment[0]} " \
@@ -207,14 +208,20 @@ class Character:
         """Return background as a string."""
         return self._background
 
+    def level(self):
+        """Return level as an integer."""
+        return self._level
 
-def character_generator(evil_permitted=False):
+
+def character_generator(evil_permitted=False, level=1):
     """Generate random values for a Character, then return the newly
     generated character.
 
     Arguments:
         evil_permitted: bool; True to include evil alignments in random
         alignment generation. Default: False
+
+        level: int; character level. Default: 1
 
     Returns:
         new_character: A Character instance.
@@ -226,6 +233,19 @@ def character_generator(evil_permitted=False):
     else:
         alignment = alignments_modded[int(random()
                                           * len(alignments_modded))]
+
+    # Validate level
+    if type(level) != int:
+        try:
+            level = int(level)
+        except TypeError:
+            level = 1
+        except ValueError:
+            level = 1
+    if level < 1:
+        level = 1
+    elif level > 20:
+        level = 20
 
     # Select a race
     race = races[int(random() * len(races))]
@@ -369,7 +389,8 @@ def character_generator(evil_permitted=False):
                               archetype=archetype,
                               height=height,
                               weight=weight,
-                              gender=gender)
+                              gender=gender,
+                              level=level)
 
     return new_character
 
