@@ -1,50 +1,108 @@
 import sys
 from random import random
 
-races = ['Dwarf',
-         'Elf',
-         'Halfling',
-         'Human',
-         'Dragonborn',
-         'Gnome',
-         'Half-Elf',
-         'Half-Orc',
-         'Tiefling']
-
-subraces = [['Dwarf', ['Hill Dwarf', 'Mountain Dwarf']],
-            ['Elf', [['High Elf', ['Sun Elf', 'Moon Elf']],
-                     'Wood Elf',
-                     'Dark Elf (Drow)']],
-            ['Halfling', ['Lightfoot', 'Stout']],
-            ['Human', [['Standard',
-                        'Variant'],
-                       ['Calishite',
-                        'Chondathan',
-                        'Damaran',
-                        'Illuskan',
-                        'Mulan',
-                        'Rashemi',
-                        'Shou',
-                        'Tethyrian',
-                        'Turami']]],
-            ['Gnome', ['Forest Gnome', 'Rock Gnome']]]
-
-# Numbers: Base height, height modifier dice count, height modifier dice
-# value, base weight, weight modifier dice count, weight modifier dice
-# value. Exception: Halflings and Gnomes add height modifier to weight.
-sizes = [['Human', [56, 2, 10, 110, 2, 4]],
-         ['Hill Dwarf', [44, 2, 4, 115, 2, 6]],
-         ['Mountain Dwarf', [48, 2, 4, 130, 2, 6]],
-         ['High Elf (Sun Elf)', [54, 2, 10, 90, 1, 4]],
-         ['High Elf (Moon Elf)', [54, 2, 10, 90, 1, 4]],
-         ['Wood Elf', [54, 2, 10, 100, 1, 4]],
-         ['Dark Elf (Drow)', [53, 2, 6, 75, 1, 6]],
-         ['Halfling', [31, 2, 4, 35, 1, 1]],
-         ['Dragonborn', [66, 2, 8, 175, 2, 6]],
-         ['Gnome', [35, 2, 4, 35, 1, 1]],
-         ['Half-Elf', [57, 2, 8, 110, 2, 4]],
-         ['Half-Orc', [58, 2, 10, 140, 2, 6]],
-         ['Tiefling', [57, 2, 8, 110, 2, 4]]]
+races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
+                                                         'ht_mod_count': 2,
+                                                         'ht_mod_value': 4,
+                                                         'base_weight': 115,
+                                                         'wt_mod_count': 2,
+                                                         'wt_mod_value': 6}},
+                                'Mountain Dwarf': {'sizes': {'base_height': 48,
+                                                             'ht_mod_count': 2,
+                                                             'ht_mod_value': 4,
+                                                             'base_weight': 130,
+                                                             'wt_mod_count': 2,
+                                                             'wt_mod_value': 6}}},
+                   'size_category': 'subracial'},
+         'Elf': {'subraces': {'High Elf': {'types': ['High Elf (Sun Elf)',
+                                                     'High Elf (Moon Elf)'],
+                                           'sizes': {'base_height': 54,
+                                                     'ht_mod_count': 2,
+                                                     'ht_mod_value': 10,
+                                                     'base_weight': 90,
+                                                     'wt_mod_count': 1,
+                                                     'wt_mod_value': 4}},
+                              'Wood Elf': {'types': ['Wood Elf'],
+                                           'sizes': {'base_height': 54,
+                                                     'ht_mod_count': 2,
+                                                     'ht_mod_value': 10,
+                                                     'base_weight': 100,
+                                                     'wt_mod_count': 1,
+                                                     'wt_mod_value': 4}},
+                              'Drow': {'types': ['Drow'],
+                                       'sizes': {'base_height': 53,
+                                                 'ht_mod_count': 2,
+                                                 'ht_mod_value': 6,
+                                                 'base_weight': 75,
+                                                 'wt_mod_count': 1,
+                                                 'wt_mod_value': 6}}},
+                 'size_category': 'subracial'},
+         'Halfling': {'subraces': ['Lightfoot', 'Stout'],
+                      'sizes': {'base_height': 31,
+                                'ht_mod_count': 2,
+                                'ht_mod_value': 4,
+                                'base_weight': 35,
+                                'wt_mod_count': 1,
+                                'wt_mod_value': 1},
+                      'size_category': 'racial'},
+         'Human': {'subraces': {'types': ['Standard',
+                                          'Variant'],
+                                'ethnic_groups': ['Calishite',
+                                                  'Chondathan',
+                                                  'Damaran',
+                                                  'Illuskan',
+                                                  'Mulan',
+                                                  'Rashemi',
+                                                  'Shou',
+                                                  'Tethyrian',
+                                                  'Turami']},
+                   'sizes': {'base_height': 56,
+                             'ht_mod_count': 2,
+                             'ht_mod_value': 10,
+                             'base_weight': 110,
+                             'wt_mod_count': 2,
+                             'wt_mod_value': 4},
+                   'size_category': 'racial'},
+         'Dragonborn': {'subraces': None,
+                        'sizes': {'base_height': 66,
+                                  'ht_mod_count': 2,
+                                  'ht_mod_value': 8,
+                                  'base_weight': 175,
+                                  'wt_mod_count': 2,
+                                  'wt_mod_value': 6},
+                        'size_category': 'racial'},
+         'Gnome': {'subraces': ['Forest Gnome', 'Rock Gnome'],
+                   'sizes': {'base_height': 35,
+                             'ht_mod_count': 2,
+                             'ht_mod_value': 4,
+                             'base_weight': 35,
+                             'wt_mod_count': 1,
+                             'wt_mod_value': 1},
+                   'size_category': 'racial'},
+         'Half-Elf': {'subraces': None,
+                      'sizes': {'base_height': 57,
+                                'ht_mod_count': 2,
+                                'ht_mod_value': 8,
+                                'base_weight': 110,
+                                'wt_mod_count': 2,
+                                'wt_mod_value': 4},
+                      'size_category': 'racial'},
+         'Half-Orc': {'subraces': None,
+                      'sizes': {'base_height': 58,
+                                'ht_mod_count': 2,
+                                'ht_mod_value': 10,
+                                'base_weight': 140,
+                                'wt_mod_count': 2,
+                                'wt_mod_value': 6},
+                      'size_category': 'racial'},
+         'Tiefling': {'subraces': None,
+                      'sizes': {'base_height': 57,
+                                'ht_mod_count': 2,
+                                'ht_mod_value': 8,
+                                'base_weight': 110,
+                                'wt_mod_count': 2,
+                                'wt_mod_value': 4},
+                      'size_category': 'racial'}}
 
 classes = ['Barbarian',
            'Bard',
@@ -245,28 +303,44 @@ def character_generator(evil_permitted=False, level=1):
         level = 20
 
     # Select a race
-    race = races[int(random() * len(races))]
+    race_names = list(races.keys())
+    race = race_names[int(random() * len(races))]
 
     # Select a subrace
     subrace = None
-    for selection in subraces:
+    subraces = races[race]['subraces']
+    if subraces:
+        for selection in subraces:
 
-        # Subrace selection for non-humans
-        if race != 'Human' and race in selection:
-            subrace = selection[1][int(random() * len(selection[1]))]
+            # Subrace selection for elves
+            if race == 'Elf':
 
-        # Human ethnicity and standard/variant selection
-        elif race == 'Human' and race in selection:
-            types = selection[1][0]
-            ethnic_groups = selection[1][1]
-            subrace = f'{types[int(random() * len(types))]} ' \
-                f'({ethnic_groups[int(random() * len(ethnic_groups))]})'
+                # Select meta_subrace (High Elf, Wood Elf, Drow)
+                meta_subrace = list(subraces)[int(random() * len(list(subraces)))]
 
-    # Specify type of High Elf, if applicable
-    if subrace:
-        if 'High Elf' in subrace:
-            subrace = f'High Elf ' \
-                f'({subrace[1][int(random() * len(subrace[1]))]})'
+                # Identify types of each meta_subrace (High elves will
+                # have multiple types)
+                types = subraces[meta_subrace]['types']
+
+                # Select subrace from types
+                subrace = types[int(random() * len(types))]
+
+            # Subrace selection for humans
+            elif race == 'Human':
+                # Select ethnic group
+                all_ethnics = list(subraces['ethnic_groups'])
+                ethnic_group = all_ethnics[int(random() * len(all_ethnics))]
+
+                # Select type (standard or variant)
+                all_types = list(subraces['types'])
+                type_group = all_types[int(random() * len(all_types))]
+
+                # Combine type and ethnic group
+                subrace = f'{type_group} {ethnic_group}'
+
+            # Subrace selection for non-humans
+            else:
+                subrace = list(subraces)[int(random() * len(list(subraces)))]
 
     # Determine height and weight
     weight_raw = None
@@ -288,48 +362,44 @@ def character_generator(evil_permitted=False, level=1):
             total += int(random() * value) + 1
         return total
 
-    def get_height_weight(formula):
+    def get_height_weight(base_height, ht_mod_count, ht_mod_value,
+                          base_weight, wt_mod_count, wt_mod_value):
         """Calculate the height and weight of a character.
 
         Arguments:
-            formula: list; in order, items in the list are base height,
-            height modifier dice count, height modifier dice value, base
-            weight, weight modifier dice count, weight modifier dice
-            value.
+            base_height: int; base height of the character.
+            ht_mod_count: int; number of dice for height modifier.
+            ht_mod_value: int; value of dice for height modifier.
+            base_weight: int; base weight of the character.
+            wt_mod_count: int; number of dice for weight modifier.
+            wt_mod_value: int; value of dice for weight modifier.
 
         Returns:
             height: int; height of the character.
             weight: int; weight of the character.
         """
 
-        base_height = formula[0]
-        ht_dice_count = formula[1]
-        ht_dice_value = formula[2]
-        base_weight = formula[3]
-        wt_dice_count = formula[4]
-        wt_dice_value = formula[5]
-
         # Determine height
-        height_mod = roll(ht_dice_count, ht_dice_value)
+        height_mod = roll(ht_mod_count, ht_mod_value)
         height = base_height + height_mod
 
         # Determine weight
-        weight_mod = roll(wt_dice_count, wt_dice_value)
-        weight = base_weight + ((height_mod) * (weight_mod))
+        weight_mod = roll(wt_mod_count, wt_mod_value)
+        weight = base_weight + (height_mod * weight_mod)
 
         return height, weight
 
-    # Height and weight for dwarves and elves
-    if race == 'Dwarf' or race == 'Elf':
-        for formula in sizes:
-            if subrace in formula:
-                height_raw, weight_raw = get_height_weight(formula[1])
-
-    # Height and weight for other races
+    # Determine whether character size depends on race or subrace, then
+    # use the appropriate formula accordingly
+    if races[race]['size_category'] == 'racial':
+        formula = races[race]['sizes']
     else:
-        for formula in sizes:
-            if race in formula:
-                height_raw, weight_raw = get_height_weight(formula[1])
+        if 'High Elf' in subrace:
+            formula = races[race]['subraces']['High Elf']['sizes']
+        else:
+            formula = races[race]['subraces'][subrace]['sizes']
+
+    height_raw, weight_raw = get_height_weight(**formula)
 
     # Clean up height
     feet = 0
