@@ -282,12 +282,22 @@ def character_generator(evil_permitted=False, level=1):
         new_character: A Character instance.
     """
 
+    def select(lst):
+        """Select a random value from a given list.
+
+        Arguments:
+            lst: list; the list from which a value will be selected.
+
+        Returns:
+            One item selected randomly from the list.
+        """
+        return lst[int(random() * len(lst))]
+
     # Determine whether alignments may be evil
     if evil_permitted:
-        alignment = alignments[int(random() * len(alignments))]
+        alignment = select(alignments)
     else:
-        alignment = alignments_modded[int(random()
-                                          * len(alignments_modded))]
+        alignment = select(alignments_modded)
 
     # Validate level
     if type(level) != int:
@@ -303,44 +313,40 @@ def character_generator(evil_permitted=False, level=1):
         level = 20
 
     # Select a race
-    race_names = list(races.keys())
-    race = race_names[int(random() * len(races))]
+    race = select(list(races.keys()))
 
     # Select a subrace
     subrace = None
     subraces = races[race]['subraces']
     if subraces:
-        for selection in subraces:
 
-            # Subrace selection for elves
-            if race == 'Elf':
+        # Subrace selection for elves
+        if race == 'Elf':
 
-                # Select meta_subrace (High Elf, Wood Elf, Drow)
-                meta_subrace = list(subraces)[int(random() * len(list(subraces)))]
+            # Select meta_subrace (High Elf, Wood Elf, Drow)
+            meta_subrace = select(list(subraces))
 
-                # Identify types of each meta_subrace (High elves will
-                # have multiple types)
-                types = subraces[meta_subrace]['types']
+            # Identify types of each meta_subrace (High elves will
+            # have multiple types)
+            types = subraces[meta_subrace]['types']
 
-                # Select subrace from types
-                subrace = types[int(random() * len(types))]
+            # Select subrace from types
+            subrace = select(types)
 
-            # Subrace selection for humans
-            elif race == 'Human':
-                # Select ethnic group
-                all_ethnics = list(subraces['ethnic_groups'])
-                ethnic_group = all_ethnics[int(random() * len(all_ethnics))]
+        # Subrace selection for humans
+        elif race == 'Human':
+            # Select ethnic group
+            ethnic_group = select(list(subraces['ethnic_groups']))
 
-                # Select type (standard or variant)
-                all_types = list(subraces['types'])
-                type_group = all_types[int(random() * len(all_types))]
+            # Select type (standard or variant)
+            type_group = select(list(subraces['types']))
 
-                # Combine type and ethnic group
-                subrace = f'{type_group} {ethnic_group}'
+            # Combine type and ethnic group
+            subrace = f'{type_group} {ethnic_group}'
 
-            # Subrace selection for non-humans
-            else:
-                subrace = list(subraces)[int(random() * len(list(subraces)))]
+        # Subrace selection for non-humans
+        else:
+            subrace = select(list(subraces))
 
     # Determine height and weight
     weight_raw = None
@@ -452,7 +458,7 @@ def character_generator(evil_permitted=False, level=1):
         archetype = None
 
     # Select background
-    background = backgrounds[int(random() * len(backgrounds))]
+    background = select(backgrounds)
 
     # Generate character
     new_character = Character(race=race,
