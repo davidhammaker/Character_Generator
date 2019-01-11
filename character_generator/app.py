@@ -391,8 +391,7 @@ def character_generator(evil_permitted=False, level=1):
     weight = f'{weight_raw} lb.'
 
     # Select gender
-    genders = ['Male', 'Female']
-    gender = genders[round(random())]
+    gender = select(['Male', 'Female'])
 
     # Select a class
     cls = select(list(classes))
