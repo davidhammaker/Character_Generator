@@ -104,74 +104,49 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                                 'wt_mod_value': 4},
                       'size_category': 'racial'}}
 
-classes = ['Barbarian',
-           'Bard',
-           'Cleric',
-           'Druid',
-           'Fighter',
-           'Monk',
-           'Paladin',
-           'Ranger',
-           'Rogue',
-           'Sorcerer',
-           'Warlock',
-           'Wizard']
+classes = {'Barbarian': ['Path of the Berserker', 'Path of the Totem Warrior'],
+           'Bard': ['College of Lore', 'College of Valor'],
+           'Cleric': ['Life Domain',
+                      'Light Domain',
+                      'Nature Domain',
+                      'Tempest Domain',
+                      'Trickery Domain',
+                      'War Domain'],
+           'Druid': {'Circle of the Land': ['Arctic',
+                                            'Coast',
+                                            'Desert',
+                                            'Forest',
+                                            'Grassland',
+                                            'Mountain',
+                                            'Swamp',
+                                            'Underdark'],
+                     'Circle of the Moon': ['Circle of the Moon']},
+           'Fighter': ['Champion', 'Battle Master', 'Eldritch Knight'],
+           'Monk': ['Way of the Open Hand', 'Way of Shadow', 'Way of the Four Elements'],
+           'Paladin': ['Oauth of Devotion', 'Oauth of the Ancients', 'Oath of Vengeance'],
+           'Ranger': ['Hunter', 'Beast Master'],
+           'Rogue': ['Thief', 'Assassin', 'Archane Trixter'],
+           'Sorcerer': {'Draconic Bloodline': ['Black',
+                                               'Blue',
+                                               'Brass',
+                                               'Bronze',
+                                               'Copper',
+                                               'Gold',
+                                               'Green',
+                                               'Red',
+                                               'Silver',
+                                               'White'],
+                        'Wild Magic': ['Wild Magic']},
+           'Warlock': ['The Archfey', 'The Fiend', 'The Great Old One'],
+           'Wizard': ['School of Abjuration',
+                      'School of Conjuration',
+                      'School of Divination',
+                      'School of Enchantment',
+                      'School of Evocation',
+                      'School of Illusion',
+                      'School of Necromancy',
+                      'School of Transmutation']}
 
-archetypes = [['Barbarian', ['Path of the Berserker',
-                             'Path of the Totem Warrior']],
-              ['Bard', ['College of Lore',
-                        'College of Valor']],
-              ['Cleric', ['Life Domain',
-                          'Light Domain',
-                          'Nature Domain',
-                          'Tempest Domain',
-                          'Trickery Domain',
-                          'War Domain']],
-              ['Druid', [['Circle of the Land', ['Arctic',
-                                                 'Coast',
-                                                 'Desert',
-                                                 'Forest',
-                                                 'Grassland',
-                                                 'Mountain',
-                                                 'Swamp',
-                                                 'Underdark']],
-                         'Circle of the Moon']],
-              ['Fighter', ['Champion',
-                           'Battle Master',
-                           'Eldritch Knight']],
-              ['Monk', ['Way of the Open Hand',
-                        'Way of Shadow',
-                        'Way of the Four Elements']],
-              ['Paladin', ['Oauth of Devotion',
-                           'Oauth of the Ancients',
-                           'Oath of Vengeance']],
-              ['Ranger', ['Hunter',
-                          'Beast Master']],
-              ['Rogue', ['Thief',
-                         'Assassin',
-                         'Archane Trixter']],
-              ['Sorcerer', [['Draconic Bloodline', ['Black',
-                                                    'Blue',
-                                                    'Brass',
-                                                    'Bronze',
-                                                    'Copper',
-                                                    'Gold',
-                                                    'Green',
-                                                    'Red',
-                                                    'Silver',
-                                                    'White']],
-                            'Wild Magic']],
-              ['Warlock', ['The Archfey',
-                           'The Fiend',
-                           'The Great Old One']],
-              ['Wizard', ['School of Abjuration',
-                          'School of Conjuration',
-                          'School of Divination',
-                          'School of Enchantment',
-                          'School of Evocation',
-                          'School of Illusion',
-                          'School of Necromancy',
-                          'School of Transmutation']]]
 
 alignments = [['Lawful', 'Good'],
               ['Lawful', 'Neutral'],
@@ -420,23 +395,24 @@ def character_generator(evil_permitted=False, level=1):
     gender = genders[round(random())]
 
     # Select a class
-    cls = classes[int(random() * len(classes))]
+    cls = select(list(classes))
 
     # Select an archetype
     archetype = None
-    for selection in archetypes:
-        if cls in selection:
-            archetype = selection[1][int(random() * len(selection[1]))]
 
-    # Specify Druid's Land, if applicable
-    if 'Circle of the Land' in archetype:
-        archetype = f'Circle of the Land ' \
-            f'({archetype[1][int(random() * len(archetype[1]))]})'
+    # Selection for standard archetypes
+    if type(classes[cls]) == list:
+        archetype = select(classes[cls])
 
-    # Specify Sorcerer's Dragon, if applicable
-    if 'Draconic Bloodline' in archetype:
-        archetype = f'Draconic Bloodline ' \
-            f'({archetype[1][int(random() * len(archetype[1]))]})'
+    # Selection for archetypes with many variations, like Druids and
+    # Sorcerers
+    else:
+        archetype_raw = select(list(classes[cls]))
+        archetype_variant = select(classes[cls][archetype_raw])
+        if archetype_raw != archetype_variant:
+            archetype = f'{archetype_raw} ({archetype_variant})'
+        else:
+            archetype = f'{archetype_raw}'
 
     # Ensure that character is high enough level for archetype
     level_2_archetype_classes = ['Druid',
