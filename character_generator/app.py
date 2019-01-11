@@ -365,6 +365,22 @@ def character_generator(evil_permitted=False, level=1):
         archetype = f'Draconic Bloodline ' \
             f'({archetype[1][int(random() * len(archetype[1]))]})'
 
+    # Ensure that character is high enough level for archetype
+    level_2_archetype_classes = ['Druid',
+                                 'Wizard']
+    level_3_archetype_classes = ['Barbarian',
+                                 'Bard',
+                                 'Fighter',
+                                 'Monk',
+                                 'Paladin',
+                                 'Ranger',
+                                 'Rogue']
+
+    if level < 2 and cls in level_2_archetype_classes:
+        archetype = None
+    if level < 3 and cls in level_3_archetype_classes:
+        archetype = None
+
     # Select background
     background = backgrounds[int(random() * len(backgrounds))]
 
