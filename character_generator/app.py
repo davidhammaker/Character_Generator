@@ -13,7 +13,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                                                              'base_weight': 130,
                                                              'wt_mod_count': 2,
                                                              'wt_mod_value': 6}}},
-                   'size_category': 'subracial'},
+                   'size_category': 'subracial',
+                   'age_range': [1, 350],
+                   'age_range_prime': [50, 100]},
          'Elf': {'subraces': {'High Elf': {'types': ['High Elf (Sun Elf)',
                                                      'High Elf (Moon Elf)'],
                                            'sizes': {'base_height': 54,
@@ -36,7 +38,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                                                  'base_weight': 75,
                                                  'wt_mod_count': 1,
                                                  'wt_mod_value': 6}}},
-                 'size_category': 'subracial'},
+                 'size_category': 'subracial',
+                 'age_range': [1, 750],
+                 'age_range_prime': [100, 150]},
          'Halfling': {'subraces': ['Lightfoot', 'Stout'],
                       'sizes': {'base_height': 31,
                                 'ht_mod_count': 2,
@@ -44,7 +48,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                                 'base_weight': 35,
                                 'wt_mod_count': 1,
                                 'wt_mod_value': 1},
-                      'size_category': 'racial'},
+                      'size_category': 'racial',
+                      'age_range': [1, 150],
+                      'age_range_prime': [20, 40]},
          'Human': {'subraces': {'types': ['Standard',
                                           'Variant'],
                                 'ethnic_groups': ['Calishite',
@@ -62,7 +68,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                              'base_weight': 110,
                              'wt_mod_count': 2,
                              'wt_mod_value': 4},
-                   'size_category': 'racial'},
+                   'size_category': 'racial',
+                   'age_range': [1, 100],
+                   'age_range_prime': [17, 30]},
          'Dragonborn': {'subraces': None,
                         'sizes': {'base_height': 66,
                                   'ht_mod_count': 2,
@@ -70,7 +78,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                                   'base_weight': 175,
                                   'wt_mod_count': 2,
                                   'wt_mod_value': 6},
-                        'size_category': 'racial'},
+                        'size_category': 'racial',
+                        'age_range': [1, 80],
+                        'age_range_prime': [15, 25]},
          'Gnome': {'subraces': ['Forest Gnome', 'Rock Gnome'],
                    'sizes': {'base_height': 35,
                              'ht_mod_count': 2,
@@ -78,7 +88,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                              'base_weight': 35,
                              'wt_mod_count': 1,
                              'wt_mod_value': 1},
-                   'size_category': 'racial'},
+                   'size_category': 'racial',
+                   'age_range': [1, 500],
+                   'age_range_prime': [40, 60]},
          'Half-Elf': {'subraces': None,
                       'sizes': {'base_height': 57,
                                 'ht_mod_count': 2,
@@ -86,7 +98,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                                 'base_weight': 110,
                                 'wt_mod_count': 2,
                                 'wt_mod_value': 4},
-                      'size_category': 'racial'},
+                      'size_category': 'racial',
+                      'age_range': [1, 180],
+                      'age_range_prime': [20, 40]},
          'Half-Orc': {'subraces': None,
                       'sizes': {'base_height': 58,
                                 'ht_mod_count': 2,
@@ -94,7 +108,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                                 'base_weight': 140,
                                 'wt_mod_count': 2,
                                 'wt_mod_value': 6},
-                      'size_category': 'racial'},
+                      'size_category': 'racial',
+                      'age_range': [1, 75],
+                      'age_range_prime': [14, 25]},
          'Tiefling': {'subraces': None,
                       'sizes': {'base_height': 57,
                                 'ht_mod_count': 2,
@@ -102,7 +118,9 @@ races = {'Dwarf': {'subraces': {'Hill Dwarf': {'sizes': {'base_height': 44,
                                 'base_weight': 110,
                                 'wt_mod_count': 2,
                                 'wt_mod_value': 4},
-                      'size_category': 'racial'}}
+                      'size_category': 'racial',
+                      'age_range': [1, 110],
+                      'age_range_prime': [17, 30]}}
 
 classes = {'Barbarian': ['Path of the Berserker', 'Path of the Totem Warrior'],
            'Bard': ['College of Lore', 'College of Valor'],
@@ -186,12 +204,13 @@ class Character:
     character."""
 
     def __init__(self, race, height, weight, alignment, cls, background,
-                 gender, subrace=None, archetype=None, level=1):
+                 gender, age, subrace=None, archetype=None, level=1):
         self._race = race
         self._subrace = subrace
         self._height = height
         self._weight = weight
         self._gender = gender
+        self._age = age
         self._alignment = alignment
         self._cls = cls
         self._background = background
@@ -222,6 +241,10 @@ class Character:
         """Return gender as a string."""
         return self._gender
 
+    def age(self):
+        """Return age as an integer."""
+        return self._age
+
     def alignment(self):
         """Return alignment as a string."""
         return f'{self._alignment[0]} {self._alignment[1]}'
@@ -243,11 +266,14 @@ class Character:
         return self._level
 
 
-def character_generator(evil_permitted=False, level=1):
+def character_generator(age_prime=True, evil_permitted=False, level=1):
     """Generate random values for a Character, then return the newly
     generated character.
 
     Arguments:
+        age_prime: bool; True to use only prime ages, False to include
+        all possible ages. Default: True
+
         evil_permitted: bool; True to include evil alignments in random
         alignment generation. Default: False
 
@@ -329,6 +355,7 @@ def character_generator(evil_permitted=False, level=1):
 
         Arguments:
             count: int; the number of dice to roll.
+
             value: int; the value of each die.
 
         Returns:
@@ -346,14 +373,20 @@ def character_generator(evil_permitted=False, level=1):
 
         Arguments:
             base_height: int; base height of the character.
+
             ht_mod_count: int; number of dice for height modifier.
+
             ht_mod_value: int; value of dice for height modifier.
+
             base_weight: int; base weight of the character.
+
             wt_mod_count: int; number of dice for weight modifier.
+
             wt_mod_value: int; value of dice for weight modifier.
 
         Returns:
             height: int; height of the character.
+
             weight: int; weight of the character.
         """
 
@@ -392,6 +425,75 @@ def character_generator(evil_permitted=False, level=1):
 
     # Select gender
     gender = select(['Male', 'Female'])
+
+    # Select age
+    def age_select(minimum, maximum, median=-1):
+        """Select an age for a character.
+
+        Arguments:
+            minimum: int; the character's minimum allowed age.
+
+            maximum: int; the character's maximum allowed age.
+
+            median: int; the median age used in age generation. Ages
+            will tend toward the median. Default: -1
+
+        Returns:
+            final_age: int; the character's selected age.
+        """
+
+        # Create a list of all possible ages
+        ages = [number for number in range(minimum, maximum)]
+
+        # Use the median to determine a center for age generation. If
+        # the median is default or otherwise invalid, the selected
+        # center will be selected from the center of the list of ages.
+        try:
+            center = ages[-ages.index(median)]
+        except ValueError:
+            center = int(len(ages) / 2)
+        except TypeError:
+            center = int(len(ages) / 2)
+
+        # Create a list of probabilities, which relates to the list of
+        # ages. Each item in "probs" represents the probability that an
+        # item of the same index in "ages" will be selected. Items in
+        # the center of "probs" have highest probability.
+        probs_left = [number / center for number in range(int(center))]
+        probs_right = reversed(probs_left)
+        probs = probs_left + list(probs_right)
+
+        # Adjust list lengths of "probs" and/or "ages" if necessary
+        while len(ages) < len(probs):
+            ages.insert(0, 0)
+        while len(ages) > len(probs):
+            probs.insert(0, 0)
+
+        # Create a list of numbers, where each number in the list
+        # represents the number of occurrences that an item of the same
+        # index in "ages" will have in "select_group", from which the
+        # age will be selected
+        counts = [int(len(ages) * prob) for prob in probs]
+
+        # Create a list of ages, where the number of occurrences of an
+        # age represents the likelihood that the age will be selected.
+        # The final age will be selectec from "select_group".
+        select_group = []
+        for age in ages:
+            select_group += [age] * counts[ages.index(age)]
+
+        # Select and return the final age
+        final_age = select_group[int(random() * len(select_group))]
+        return final_age
+
+    # Determine age range
+    if age_prime:
+        age_range = races[race]['age_range_prime']
+    else:
+        age_range = races[race]['age_range']
+
+    # Use age_range and age_select to select age
+    age = age_select(*age_range)
 
     # Select a class
     cls = select(list(classes))
@@ -442,6 +544,7 @@ def character_generator(evil_permitted=False, level=1):
                               height=height,
                               weight=weight,
                               gender=gender,
+                              age=age,
                               level=level)
 
     return new_character
