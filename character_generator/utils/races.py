@@ -1,4 +1,4 @@
-from classes import Race, Subrace
+from character_generator.utils.classes import Race, Subrace
 
 # Dwarves
 # Dwarf subraces
