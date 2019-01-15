@@ -1,0 +1,23 @@
+alignments = [['Lawful', 'Good'],
+              ['Lawful', 'Neutral'],
+              ['Lawful', 'Evil'],
+              ['Neutral', 'Good'],
+              ['Neutral', 'Neutral'],
+              ['Neutral', 'Evil'],
+              ['Chaotic', 'Good'],
+              ['Chaotic', 'Neutral'],
+              ['Chaotic', 'Evil']]
+
+backgrounds = ['Acolyte',
+               'Charlatan',
+               'Criminal',
+               'Entertainer',
+               'Folk Hero',
+               'Guild Artisan',
+               'Hermit',
+               'Noble',
+               'Outlander',
+               'Sage',
+               'Sailor',
+               'Soldier',
+               'Urchin']
