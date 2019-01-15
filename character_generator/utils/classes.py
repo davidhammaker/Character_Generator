@@ -41,6 +41,22 @@ class Race:
                     for subrace in self.subraces}
 
 
+class Archetype:
+    """A class defining archetypes for Cls."""
+
+    def __init__(self, name, subcategories=None):
+        self.name = name
+        self.subcategories = subcategories
+
+
+class Cls:
+    """A class defining character classes ('cls')."""
+
+    def __init__(self, name, archetypes):
+        self.name = name
+        self.archetypes = archetypes
+
+
 class Character:
     """A class defining generated characters."""
 
