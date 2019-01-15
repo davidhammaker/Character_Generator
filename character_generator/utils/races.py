@@ -476,12 +476,12 @@ _half_elf_names['Male'] = list(set(_half_elf_names['Male']))
 _half_elf_names['Female'] = list(set(_half_elf_names['Female']))
 
 # Half-Elf race
-half_elve = Race(name='Half-Elf',
-                 age_range=_half_elf_age_range,
-                 age_range_prime=_half_elf_age_range_prime,
-                 names=_half_elf_names,
-                 sizes=_half_elf_sizes,
-                 subraces=None)
+half_elf = Race(name='Half-Elf',
+                age_range=_half_elf_age_range,
+                age_range_prime=_half_elf_age_range_prime,
+                names=_half_elf_names,
+                sizes=_half_elf_sizes,
+                subraces=None)
 
 
 # Half-Orcs
