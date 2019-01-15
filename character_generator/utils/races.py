@@ -48,12 +48,12 @@ _dwarf_names = {'Male': ['Adrik', 'Albrich', 'Baern', 'Barendd',
                            'Strakeln', 'Torunn', 'Ungart']}
 
 # Dwarf race
-dwarves = Race(name='Dwarves',
-               age_range=_dwarf_age_range,
-               age_range_prime=_dwarf_age_range_prime,
-               names=_dwarf_names,
-               sizes=None,
-               subraces=_dwarf_subraces)
+dwarf = Race(name='Dwarf',
+             age_range=_dwarf_age_range,
+             age_range_prime=_dwarf_age_range_prime,
+             names=_dwarf_names,
+             sizes=None,
+             subraces=_dwarf_subraces)
 
 
 # Elves
@@ -117,12 +117,12 @@ _elf_names = {'Male': ['Adran', 'Aelar', 'Aramil', 'Arannis', 'Aust',
                         'Vall']}
 
 # Elf race
-elves = Race(name='Elves',
-             age_range=_elf_age_range,
-             age_range_prime=_elf_age_range_prime,
-             names=_elf_names,
-             sizes=None,
-             subraces=_elf_subraces)
+elf = Race(name='Elf',
+           age_range=_elf_age_range,
+           age_range_prime=_elf_age_range_prime,
+           names=_elf_names,
+           sizes=None,
+           subraces=_elf_subraces)
 
 
 # Halflings
@@ -159,12 +159,12 @@ _halfling_names = {'Male': ['Alton', 'Ander', 'Cade', 'Corrin', 'Eldon',
                               'Tosscobble', 'Underbough']}
 
 # Halfling race
-halflings = Race(name='Halflings',
-                 age_range=_halfling_age_range,
-                 age_range_prime=_halfling_age_range_prime,
-                 names=_halfling_names,
-                 sizes=_halfling_sizes,
-                 subraces=_halfling_subraces)
+halfling = Race(name='Halfling',
+                age_range=_halfling_age_range,
+                age_range_prime=_halfling_age_range_prime,
+                names=_halfling_names,
+                sizes=_halfling_sizes,
+                subraces=_halfling_subraces)
 
 
 # Humans
@@ -351,11 +351,11 @@ _human_age_range = [1, 100]
 _human_age_range_prime = [17, 30]
 
 # Human race
-humans = Race(name='Humans',
-              age_range=_human_age_range,
-              age_range_prime=_human_age_range_prime,
-              sizes=_human_sizes,
-              subraces=_human_subraces)
+human = Race(name='Human',
+             age_range=_human_age_range,
+             age_range_prime=_human_age_range_prime,
+             sizes=_human_sizes,
+             subraces=_human_subraces)
 
 
 # Dragonborn
@@ -440,12 +440,12 @@ _gnome_names = {'Male': ['Alston', 'Alvyn', 'Boddynock', 'Brocc',
                              'Sparklegem', 'Stumbleduck']}
 
 # Gnome race
-gnomes = Race(name='Gnomes',
-              age_range=_gnome_age_range,
-              age_range_prime=_gnome_age_range_prime,
-              names=_gnome_names,
-              sizes=_gnome_sizes,
-              subraces=_gnome_subraces)
+gnome = Race(name='Gnome',
+             age_range=_gnome_age_range,
+             age_range_prime=_gnome_age_range_prime,
+             names=_gnome_names,
+             sizes=_gnome_sizes,
+             subraces=_gnome_subraces)
 
 
 # Half-Elves
@@ -465,23 +465,23 @@ _half_elf_age_range_prime = [20, 40]
 _half_elf_names = {'Male': [],
                    'Female': []}
 # Retrieve human names
-for subrace in humans.names:
-    _half_elf_names['Male'] += humans.names[subrace]['Male']
-    _half_elf_names['Female'] += humans.names[subrace]['Female']
+for subrace in human.names:
+    _half_elf_names['Male'] += human.names[subrace]['Male']
+    _half_elf_names['Female'] += human.names[subrace]['Female']
 # Retrieve elf names
-_half_elf_names['Male'] += elves.names['Male']
-_half_elf_names['Female'] += elves.names['Female']
+_half_elf_names['Male'] += elf.names['Male']
+_half_elf_names['Female'] += elf.names['Female']
 # Eliminate duplicate names
 _half_elf_names['Male'] = list(set(_half_elf_names['Male']))
 _half_elf_names['Female'] = list(set(_half_elf_names['Female']))
 
 # Half-Elf race
-half_elves = Race(name='Half-Elves',
-                  age_range=_half_elf_age_range,
-                  age_range_prime=_half_elf_age_range_prime,
-                  names=_half_elf_names,
-                  sizes=_half_elf_sizes,
-                  subraces=None)
+half_elve = Race(name='Half-Elf',
+                 age_range=_half_elf_age_range,
+                 age_range_prime=_half_elf_age_range_prime,
+                 names=_half_elf_names,
+                 sizes=_half_elf_sizes,
+                 subraces=None)
 
 
 # Half-Orcs
@@ -507,12 +507,12 @@ _half_orc_names = {'Male': ['Dench', 'Feng', 'Gell', 'Henk', 'Holg',
                               'Yevelda']}
 
 # Half-Orc race
-half_orcs = Race(name='Half-Orcs',
-                 age_range=_half_orc_age_range,
-                 age_range_prime=_half_orc_age_range_prime,
-                 names=_half_orc_names,
-                 sizes=_half_orc_sizes,
-                 subraces=None)
+half_orc = Race(name='Half-Orc',
+                age_range=_half_orc_age_range,
+                age_range_prime=_half_orc_age_range_prime,
+                names=_half_orc_names,
+                sizes=_half_orc_sizes,
+                subraces=None)
 
 
 # Tieflings
@@ -545,9 +545,9 @@ _tiefling_names = {'Male': ['Akmenos', 'Amnon', 'Barakas', 'Damakos',
                               'Torment', 'Weary']}
 
 # Tiefling race
-tieflings = Race(name='Tieflings',
-                 age_range=_tiefling_age_range,
-                 age_range_prime=_tiefling_age_range_prime,
-                 names=_tiefling_names,
-                 sizes=_tiefling_sizes,
-                 subraces=None)
+tiefling = Race(name='Tiefling',
+                age_range=_tiefling_age_range,
+                age_range_prime=_tiefling_age_range_prime,
+                names=_tiefling_names,
+                sizes=_tiefling_sizes,
+                subraces=None)
