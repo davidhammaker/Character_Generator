@@ -48,6 +48,9 @@ class Archetype:
         self.name = name
         self.subcategories = subcategories
 
+    def __repr__(self):
+        return f'Archetype({self.name})'
+
 
 class Cls:
     """A class defining character classes ('cls')."""
@@ -55,6 +58,9 @@ class Cls:
     def __init__(self, name, archetypes):
         self.name = name
         self.archetypes = archetypes
+
+    def __repr__(self):
+        return f'Cls({self.name})'
 
 
 class Character:
