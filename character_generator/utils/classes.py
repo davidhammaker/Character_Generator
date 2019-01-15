@@ -44,9 +44,10 @@ class Race:
 class Character:
     """A class defining generated characters."""
 
-    def __init__(self, race, height, weight, alignment, cls, background,
-                 gender, age, subrace=None, archetype=None, level=1):
-        self._race = race
+    def __init__(self, name, race, height, weight, alignment, cls,
+                 background, gender, age, subrace=None, archetype=None,
+                 level=1):
+        self.name = name
         self.race = race
         self.subrace = subrace
         self.height = height
