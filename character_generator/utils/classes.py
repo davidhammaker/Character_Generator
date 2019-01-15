@@ -42,68 +42,23 @@ class Race:
 
 
 class Character:
-    """A class defining generated characters. Use the
-    'character_generator' method to randomly generate values for a
-    character."""
+    """A class defining generated characters."""
 
     def __init__(self, race, height, weight, alignment, cls, background,
                  gender, age, subrace=None, archetype=None, level=1):
         self._race = race
-        self._subrace = subrace
-        self._height = height
-        self._weight = weight
-        self._gender = gender
-        self._age = age
-        self._alignment = alignment
-        self._cls = cls
-        self._background = background
-        self._archetype = archetype
-        self._level = level
+        self.race = race
+        self.subrace = subrace
+        self.height = height
+        self.weight = weight
+        self.gender = gender
+        self.age = age
+        self.alignment = alignment
+        self.cls = cls
+        self.background = background
+        self.archetype = archetype
+        self.level = level
 
     def __repr__(self):
-        return f"<Character '{self._race}', '{self._alignment[0]} " \
-            f"{self._alignment[1]}', '{self._cls}'>"
-
-    def race(self):
-        """Return race as a string."""
-        return self._race
-
-    def subrace(self):
-        """Return subrace as a string."""
-        return self._subrace
-
-    def height(self):
-        """Return height as a string."""
-        return self._height
-
-    def weight(self):
-        """Return weight as a string."""
-        return self._weight
-
-    def gender(self):
-        """Return gender as a string."""
-        return self._gender
-
-    def age(self):
-        """Return age as an integer."""
-        return self._age
-
-    def alignment(self):
-        """Return alignment as a string."""
-        return f'{self._alignment[0]} {self._alignment[1]}'
-
-    def cls(self):
-        """Return class as a string."""
-        return self._cls
-
-    def archetype(self):
-        """Return archetype as a string."""
-        return self._archetype
-
-    def background(self):
-        """Return background as a string."""
-        return self._background
-
-    def level(self):
-        """Return level as an integer."""
-        return self._level
+        return f"<Character '{self.race}', '{self.alignment[0]} " \
+            f"{self.alignment[1]}', '{self.cls}'>"
