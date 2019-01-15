@@ -300,7 +300,7 @@ class Character:
                 given_name = select(race.names[gender])
 
                 # Elf child name selection
-                if race == 'Elf' and age < 100:
+                if race.name == 'Elf' and age < 100:
                     given_name = select(race.names['Child'])
 
                 # Add Gnome nickname
