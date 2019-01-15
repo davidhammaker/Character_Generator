@@ -318,7 +318,7 @@ class Character:
             # Construct name
             # (Dwarf, Elf, Halfling, Human, Gnome)
             if race.name in ['Dwarf', 'Elf', 'Halfling', 'Human',
-                             'Dragonborn', 'Gnome']:
+                             'Gnome']:
                 name = f'{given_name} {family_name}'
 
             # Construct Dragonborn name
