@@ -1,4 +1,5 @@
 class Subrace:
+    """A class defining subraces for each Race."""
 
     def __init__(self, name, names=None, sizes=None, types=None):
         self.name = name
@@ -11,6 +12,7 @@ class Subrace:
 
 
 class Race:
+    """A class defining character races."""
 
     def __init__(self, name, age_range, age_range_prime, names=None,
                  sizes=None, subraces=None):
@@ -42,7 +44,7 @@ class Race:
 
 
 class Archetype:
-    """A class defining archetypes for Cls."""
+    """A class defining archetypes for each Cls."""
 
     def __init__(self, name, subcategories=None):
         self.name = name
