@@ -121,7 +121,7 @@ class Character:
             maximum: int; the character's maximum allowed age.
 
             median: int; the median age used in age generation. Ages
-            will tend toward the median. Default: -1
+            will tend toward the median. Default -1
 
         Returns:
             final_age: int; the character's selected age.
@@ -211,6 +211,57 @@ class Character:
                alignment=None, no_evil=True, height=None, weight=None,
                klass=None, archetype=None, archetype_sub=None,
                background=None):
+        """Create a new Character based on supplied user input and
+        randomly generated values.
+        
+        Arguments:
+            level: int; the Character's level. Default 1
+            
+            race: str; the Character's race as a string rather than a 
+            Race object. Default None
+            
+            subrace: str; the Character's subrace as a string rather
+            than a Subrace object. Default None
+            
+            gender: str; the Character's gender. Default None
+            
+            age: int; the Character's age in years. Default None
+            
+            age_range_wide: bool; if True, the returned value for age
+            will be selected from the entire range of ages permitted by
+            the Character's race. If False, the returned value for age
+            will be selected from a restricted range of ages that
+            approximate a young adult age. Default False
+            
+            name: str; the Character's name. Default None
+            
+            alignment: list; the Character's alignment, supplied as a
+            list of length 2. The first item in the list must be
+            'Lawful', 'Neutral', or 'Chaotic', and the second item in
+            the list must be 'Good', 'Neutral', or 'Evil'. Default None
+            
+            no_evil: bool; if True, randomly generated alignment may not
+            include an 'Evil' alignment. If False, randomly generated
+            alignment may include an 'Evil' alignment. Default True
+            
+            height: int; the Character's height in inches. Default None
+            
+            weight: int; the Character's weight in inches. Default None
+            
+            klass: str; the Character's class as a string rather than a
+            Klass object. Default None
+            
+            archetype: str; the Character's class as a string rather
+            than an Archetype object. Default None
+            
+            archetype_sub: str; the Character's archetype subcategory.
+            Default None
+            
+            background: str; the Character's background. Default None
+
+        Returns:
+            A Character object.
+        """
 
         # Verify level
         if level < 1:
