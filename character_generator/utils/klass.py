@@ -8,7 +8,7 @@ _barbarian_archetypes = [Archetype('Path of the Berserker'),
 # Barbarian Klass
 barbarian = Klass(name='Barbarian',
                   archetypes=_barbarian_archetypes,
-                  archetype_level_requirement=3)
+                  archetype_level_req=3)
 
 
 # Bard
@@ -19,7 +19,7 @@ _bard_archetypes = [Archetype('College of Lore'),
 # Bard Klass
 bard = Klass(name='Bard',
              archetypes=_bard_archetypes,
-             archetype_level_requirement=3)
+             archetype_level_req=3)
 
 
 # Cleric
@@ -52,7 +52,7 @@ _druid_archetypes = [Archetype(name='Circle of the Land',
 # Druid Klass
 druid = Klass(name='Druid',
               archetypes=_druid_archetypes,
-              archetype_level_requirement=2)
+              archetype_level_req=2)
 
 
 # Fighter
@@ -64,7 +64,7 @@ _fighter_archetypes = [Archetype('Champion'),
 # Fighter Klass
 fighter = Klass(name='Fighter',
                 archetypes=_fighter_archetypes,
-                archetype_level_requirement=3)
+                archetype_level_req=3)
 
 
 # Monk
@@ -76,7 +76,7 @@ _monk_archetypes = [Archetype('Way of the Open Hand'),
 # Monk Klass
 monk = Klass(name='Monk',
              archetypes=_monk_archetypes,
-             archetype_level_requirement=3)
+             archetype_level_req=3)
 
 # Paladin
 # Paladin Archetypes
@@ -87,7 +87,7 @@ _paladin_archetypes = [Archetype('Oauth of Devotion'),
 # Paladin Klass
 paladin = Klass(name='Paladin',
                 archetypes=_paladin_archetypes,
-                archetype_level_requirement=3)
+                archetype_level_req=3)
 
 
 # Ranger
@@ -97,7 +97,7 @@ _ranger_archetypes = [Archetype('Hunter'), Archetype('Beast Master')]
 # Ranger Klass
 ranger = Klass(name='Ranger',
                archetypes=_ranger_archetypes,
-               archetype_level_requirement=3)
+               archetype_level_req=3)
 
 
 # Rogue
@@ -109,7 +109,7 @@ _rogue_archetypes = [Archetype('Thief'),
 # Rogue Klass
 rogue = Klass(name='Rogue',
               archetypes=_rogue_archetypes,
-              archetype_level_requirement=3)
+              archetype_level_req=3)
 
 
 # Sorcerer
@@ -157,4 +157,4 @@ _wizard_archetypes = [Archetype('School of Abjuration'),
 # Wizard Klass
 wizard = Klass(name='Wizard',
                archetypes=_wizard_archetypes,
-               archetype_level_requirement=2)
+               archetype_level_req=2)
