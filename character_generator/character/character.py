@@ -37,13 +37,13 @@ class Character:
 
     races = [dwarf, elf, halfling, human, dragonborn, gnome, half_elf,
              half_orc, tiefling]
-    race_names = ['Dwarf', 'Elf', 'Halfling', 'Human', 'Dragonborn',
-                  'Gnome', 'Half-Elf', 'Half-Orc', 'Tiefling']
+    race_names = ['dwarf', 'elf', 'halfling', 'human', 'dragonborn',
+                  'gnome', 'half-elf', 'half-orc', 'tiefling']
     klasses = [barbarian, bard, cleric, druid, fighter, monk, paladin,
                ranger, rogue, sorcerer, warlock, wizard]
-    klasses_names = ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter',
-                     'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer',
-                     'Warlock', 'Wizard']
+    klasses_names = ['barbarian', 'bard', 'cleric', 'druid', 'fighter',
+                     'monk', 'paladin', 'ranger', 'rogue', 'sorcerer',
+                     'warlock', 'wizard']
 
     @staticmethod
     def age_select(minimum, maximum, median=-1):
@@ -209,11 +209,11 @@ class Character:
         if race:
             if type(race) != str:
                 raise TypeError("'race' must be entered as a string.")
-            elif race not in cls.race_names:
+            elif race.lower() not in cls.race_names:
                 raise NameError(f"'{race}' is not a valid race.")
             else:
                 for one_race in cls.races:
-                    if race==one_race.name:
+                    if race.title() == one_race.name:
                         race = one_race
 
         # Select race if not supplied
@@ -227,12 +227,12 @@ class Character:
             else:
                 valid_subrace = False
                 for one_subrace in race.subraces:
-                    if subrace == one_subrace.name:
+                    if subrace.lower() == one_subrace.name.lower():
                         valid_subrace = True
                         subrace = one_subrace
                 if not valid_subrace:
                     raise NameError(f"'{subrace}' is not a valid "
-                    f"subrace for '{race}'.")
+                                    f"subrace for '{race}'.")
 
         # Select subrace if not supplied
         else:
@@ -243,8 +243,9 @@ class Character:
         if gender:
             if type(gender) != str:
                 raise TypeError("'gender' must be entered as a string.")
-            elif gender not in ['Male', 'Female']:
+            elif gender.lower() not in ['male', 'female']:
                 raise NameError(f"'{gender}' is not a valid gender.")
+            gender = gender.capitalize()
 
         # Select gender if not supplied
         else:
@@ -278,11 +279,11 @@ class Character:
             family_name = ''
 
             # Half-Elf, Half-Orc name selection
-            if race.name=='Half-Elf' or race.name=='Half-Orc':
+            if race.name == 'Half-Elf' or race.name == 'Half-Orc':
                 name = select(race.names[gender])
 
             # Tiefling name selection
-            elif race.name=='Tiefling':
+            elif race.name == 'Tiefling':
                 virtue = select([True, False])
                 if virtue:
                     name = select(race.names['Virtue'])
@@ -290,7 +291,7 @@ class Character:
                     name = select(race.names[gender])
 
             # Subrace-specific name selection (Human)
-            elif race.name=='Human':
+            elif race.name == 'Human':
                 given_name = select(subrace.names[gender])
                 family_name = select(subrace.names['Family'])
 
@@ -299,11 +300,11 @@ class Character:
                 given_name = select(race.names[gender])
 
                 # Elf child name selection
-                if race.name=='Elf' and age < 100:
+                if race.name == 'Elf' and age < 100:
                     given_name = select(race.names['Child'])
 
                 # Add Gnome nickname
-                if race.name=='Gnome':
+                if race.name == 'Gnome':
                     nickname = select(race.names['Nickname'])
                     given_name += f' ({nickname})'
 
@@ -321,16 +322,19 @@ class Character:
                 name = f'{given_name} {family_name}'
 
             # Construct Dragonborn name
-            elif race.name=='Dragonborn':
+            elif race.name == 'Dragonborn':
                 name = f'{family_name} {given_name}'
 
         # Validate supplied alignment, if any
         if alignment:
-            if type(alignment)!=list:
+            if type(alignment) != list:
                 raise TypeError('Alignment must be a list.')
-            elif alignment not in alignments:
+            else:
+                for part in range(len(alignment)):
+                    alignment[part] = alignment[part].capitalize()
+            if alignment not in alignments:
                 raise NameError(f"'{alignment}' is not a valid "
-                f"alignment.")
+                                f"alignment.")
 
         # Select alignment if not supplied
         else:
@@ -343,7 +347,7 @@ class Character:
 
         # Validate supplied height, if any
         if height:
-            if type(height)!=int:
+            if type(height) != int:
                 raise TypeError('Height must be an integer (inches).')
             elif height < 12:
                 raise ValueError('Height must be at least 12 inches.')
@@ -352,7 +356,7 @@ class Character:
 
         # Validate supplied weight, if any
         if weight:
-            if type(weight)!=int:
+            if type(weight) != int:
                 raise TypeError('Weight must be an integer (pounds).')
             elif weight < 8:
                 raise ValueError('Weight must be at least 8 pounds.')
@@ -363,7 +367,7 @@ class Character:
         height_raw = 0
         weight_raw = 0
         if not height or not weight:
-            if race.name=='Elf' or race.name=='Dwarf':
+            if race.name == 'Elf' or race.name == 'Dwarf':
                 formula = subrace.sizes
             else:
                 formula = race.sizes
@@ -390,8 +394,12 @@ class Character:
         if klass:
             if type(klass) != str:
                 raise TypeError("'klass' must be entered as a string.")
-            elif klass not in cls.klasses_names:
+            elif klass.lower() not in cls.klasses_names:
                 raise NameError(f"'{klass}' is not a valid klass.")
+            else:
+                for one_klass in cls.klasses:
+                    if klass.title() == one_klass.name:
+                        klass = one_klass
 
         # Select klass if not supplied
         else:
@@ -411,8 +419,9 @@ class Character:
             else:
                 valid_archetype = False
                 for one_archetype in klass.archetypes:
-                    if archetype == one_archetype.name:
+                    if archetype.title() == one_archetype.name.title():
                         valid_archetype = True
+                        archetype = one_archetype
                 if not valid_archetype:
                     raise NameError(f"'{archetype}' is not a valid "
                                     f"archetype.")
@@ -428,13 +437,16 @@ class Character:
             if type(background) != str:
                 raise TypeError("'background' must be entered as a "
                                 "string.")
-            elif background not in backgrounds:
+            elif background.lower() not in backgrounds:
                 raise NameError(f"'{background}' is not a valid "
                                 f"background.")
-            
+            else:
+                background = background.title()
+
         # Select background if not supplied
         else:
             background = select(backgrounds)
+            background = background.title()
 
         # Put it all together
         return cls(name=name,
