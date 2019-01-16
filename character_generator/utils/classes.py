@@ -2,6 +2,7 @@ from random import random
 from character_generator.utils.methods import select, roll
 from character_generator.utils.details import alignments, backgrounds
 
+
 class Subrace:
     """A class defining subraces for each Race."""
 
@@ -48,7 +49,7 @@ class Race:
 
 
 class Archetype:
-    """A class defining archetypes for each Cls."""
+    """A class defining archetypes for each Klass."""
 
     def __init__(self, name, subcategories=None):
         self.name = name
@@ -58,31 +59,31 @@ class Archetype:
         return f'Archetype({self.name})'
 
 
-class Cls:
-    """A class defining character classes ('cls')."""
+class Klass:
+    """A class defining character classes ('klasses')."""
 
     def __init__(self, name, archetypes):
         self.name = name
         self.archetypes = archetypes
 
     def __repr__(self):
-        return f'Cls({self.name})'
+        return f'Klass({self.name})'
 
 
 from character_generator.utils.races import (dwarf, elf, halfling,
                                              human, dragonborn, gnome,
                                              half_elf, half_orc,
                                              tiefling)
-from character_generator.utils.cls import (barbarian, bard, cleric,
-                                           druid, fighter, monk,
-                                           paladin, ranger, rogue,
-                                           sorcerer, warlock, wizard)
+from character_generator.utils.klass import (barbarian, bard, cleric,
+                                             druid, fighter, monk,
+                                             paladin, ranger, rogue,
+                                             sorcerer, warlock, wizard)
 
 
 class Character:
     """A class defining generated characters."""
 
-    def __init__(self, name, race, height, weight, alignment, cls,
+    def __init__(self, name, race, height, weight, alignment, klass,
                  background, gender, age, subrace=None, archetype=None,
                  archetype_sub=None, level=1):
         self.name = name
@@ -93,7 +94,7 @@ class Character:
         self.gender = gender
         self.age = age
         self.alignment = alignment
-        self.cls = cls
+        self.klass = klass
         self.background = background
         self.archetype = archetype
         self.archetype_sub = archetype_sub
@@ -101,14 +102,14 @@ class Character:
 
     def __repr__(self):
         return f"<Character '{self.race}', '{self.alignment[0]} " \
-            f"{self.alignment[1]}', '{self.cls}'>"
+            f"{self.alignment[1]}', '{self.klass}'>"
 
     races = [dwarf, elf, halfling, human, dragonborn, gnome, half_elf,
              half_orc, tiefling]
     race_names = ['Dwarf', 'Elf', 'Halfling', 'Human', 'Dragonborn',
                   'Gnome', 'Half-Elf', 'Half-Orc', 'Tiefling']
-    d_classes = [barbarian, bard, cleric, druid, fighter, monk, paladin,
-                 ranger, rogue, sorcerer, warlock, wizard]
+    klasses = [barbarian, bard, cleric, druid, fighter, monk, paladin,
+               ranger, rogue, sorcerer, warlock, wizard]
 
     @staticmethod
     def age_select(minimum, maximum, median=-1):
@@ -208,7 +209,7 @@ class Character:
     def create(cls, level=1, race=None, subrace=None, gender=None,
                age=None, age_range_wide=False, name=None,
                alignment=None, no_evil=True, height=None, weight=None,
-               d_cls=None, archetype=None, archetype_sub=None,
+               klass=None, archetype=None, archetype_sub=None,
                background=None):
 
         # Verify level
@@ -387,11 +388,11 @@ class Character:
             weight_raw = weight
         weight = f'{weight_raw} lb.'
 
-        # Select character class (D&D class, 'd_cls')
-        d_cls = select(cls.d_classes)
+        # Select character class (D&D class, 'klass')
+        klass = select(cls.klasses)
 
         # Select archetype
-        archetype = select(d_cls.archetypes)
+        archetype = select(klass.archetypes)
         if archetype.subcategories:
             archetype_sub = select(archetype.subcategories)
 
@@ -404,7 +405,7 @@ class Character:
                    height=height,
                    weight=weight,
                    alignment=alignment,
-                   cls=d_cls,
+                   klass=klass,
                    background=background,
                    gender=gender,
                    age=age,
