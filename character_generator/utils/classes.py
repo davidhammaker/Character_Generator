@@ -57,9 +57,11 @@ class Archetype:
 class Klass:
     """A class defining character classes ('klasses')."""
 
-    def __init__(self, name, archetypes):
+    def __init__(self, name, archetypes,
+                 archetype_level_requirement=None):
         self.name = name
         self.archetypes = archetypes
+        self.archetype_level_requirement = archetype_level_requirement
 
     def __repr__(self):
         return f'Klass({self.name})'
