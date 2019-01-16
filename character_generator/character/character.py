@@ -41,6 +41,9 @@ class Character:
                   'Gnome', 'Half-Elf', 'Half-Orc', 'Tiefling']
     klasses = [barbarian, bard, cleric, druid, fighter, monk, paladin,
                ranger, rogue, sorcerer, warlock, wizard]
+    klasses_names = ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter',
+                     'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer',
+                     'Warlock', 'Wizard']
 
     @staticmethod
     def age_select(minimum, maximum, median=-1):
@@ -224,7 +227,7 @@ class Character:
             else:
                 valid_subrace = False
                 for one_subrace in race.subraces:
-                    if subrace==one_subrace.name:
+                    if subrace == one_subrace.name:
                         valid_subrace = True
                         subrace = one_subrace
                 if not valid_subrace:
@@ -253,8 +256,8 @@ class Character:
                 raise TypeError("'age' must be entered as an integer.")
             elif not (race.age_range[0] <= age <= race.age_range[1]):
                 raise ValueError(f"Age is out of range. Must be "
-                f"between {race.age_range[0]} and "
-                f"{race.age_range[1]} for '{race}'.")
+                                 f"between {race.age_range[0]} and "
+                                 f"{race.age_range[1]} for '{race}'.")
 
         # Select age if not supplied
         else:
@@ -383,28 +386,67 @@ class Character:
             weight_raw = weight
         weight = f'{weight_raw} lb.'
 
-        # Select character class (D&D class, 'klass')
-        klass = select(cls.klasses)
+        # Validate supplied klass, if any
+        if klass:
+            if type(klass) != str:
+                raise TypeError("'klass' must be entered as a string.")
+            elif klass not in cls.klasses_names:
+                raise NameError(f"'{klass}' is not a valid klass.")
 
-        # Select archetype
-        archetype = select(klass.archetypes)
-        if archetype.subcategories:
-            archetype_sub = select(archetype.subcategories)
+        # Select klass if not supplied
+        else:
+            klass = select(cls.klasses)
 
-        # Select background
-        background = select(backgrounds)
+        # Validate supplied archetype, if any
+        if archetype:
+            if type(archetype) != str:
+                raise TypeError("'archetype' must be entered as a "
+                                "string.")
+            elif klass.archetype_level_req:
+                if level < klass.archetype_level_req:
+                    raise ValueError(f"'{klass.name}' restricts "
+                                     f"archetypes to level "
+                                     f"{klass.archetype_level_req} and "
+                                     f"higher.")
+            else:
+                valid_archetype = False
+                for one_archetype in klass.archetypes:
+                    if archetype == one_archetype.name:
+                        valid_archetype = True
+                if not valid_archetype:
+                    raise NameError(f"'{archetype}' is not a valid "
+                                    f"archetype.")
+
+        # Select archetype if not supplied
+        else:
+            archetype = select(klass.archetypes)
+            if archetype.subcategories:
+                archetype_sub = select(archetype.subcategories)
+
+        # Validate supplied background, if any
+        if background:
+            if type(background) != str:
+                raise TypeError("'background' must be entered as a "
+                                "string.")
+            elif background not in backgrounds:
+                raise NameError(f"'{background}' is not a valid "
+                                f"background.")
+            
+        # Select background if not supplied
+        else:
+            background = select(backgrounds)
 
         # Put it all together
         return cls(name=name,
-            race=race,
-            height=height,
-            weight=weight,
-            alignment=alignment,
-            klass=klass,
-            background=background,
-            gender=gender,
-            age=age,
-            subrace=subrace,
-            archetype=archetype,
-            archetype_sub=archetype_sub,
-            level=level)
+                   race=race,
+                   height=height,
+                   weight=weight,
+                   alignment=alignment,
+                   klass=klass,
+                   background=background,
+                   gender=gender,
+                   age=age,
+                   subrace=subrace,
+                   archetype=archetype,
+                   archetype_sub=archetype_sub,
+                   level=level)
