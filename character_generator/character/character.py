@@ -194,15 +194,19 @@ class Character:
             A Character object.
         """
 
-        # Verify level
-        if level < 1:
-            raise ValueError('Level cannot be less than 1.')
+        # Validate level
+        if type(level) != int:
+            raise TypeError("'level' must be entered as an integer.")
+        elif level < 1:
+            raise ValueError("'level' cannot be less than 1.")
         elif level > 20:
-            raise ValueError('Level cannot be greater than 20.')
+            raise ValueError("'level' cannot be greater than 20.")
 
-        # Verify supplied race, if any
+        # Validate supplied race, if any
         if race:
-            if race not in cls.race_names:
+            if type(race) != str:
+                raise TypeError("'race' must be entered as a string.")
+            elif race not in cls.race_names:
                 raise NameError(f"'{race}' is not a valid race.")
             else:
                 for one_race in cls.races:
@@ -213,7 +217,7 @@ class Character:
         else:
             race = select(cls.races)
 
-        # Verify supplied subrace, if any
+        # Validate supplied subrace, if any
         if subrace:
             if not race.subraces:
                 raise ValueError(f"'{race}' does not have subraces.")
@@ -232,18 +236,22 @@ class Character:
             if race.subraces:
                 subrace = select(race.subraces)
 
-        # Verify supplied gender, if any
+        # Validate supplied gender, if any
         if gender:
-            if gender not in ['Male', 'Female']:
+            if type(gender) != str:
+                raise TypeError("'gender' must be entered as a string.")
+            elif gender not in ['Male', 'Female']:
                 raise NameError(f"'{gender}' is not a valid gender.")
 
         # Select gender if not supplied
         else:
             gender = select(['Male', 'Female'])
 
-        # Verify supplied age, if any
+        # Validate supplied age, if any
         if age:
-            if not (race.age_range[0] <= age <= race.age_range[1]):
+            if type(age) != int:
+                raise TypeError("'age' must be entered as an integer.")
+            elif not (race.age_range[0] <= age <= race.age_range[1]):
                 raise ValueError(f"Age is out of range. Must be "
                 f"between {race.age_range[0]} and "
                 f"{race.age_range[1]} for '{race}'.")
@@ -255,8 +263,13 @@ class Character:
             else:
                 age = cls.age_select(*race.age_range_prime)
 
+        # Validate supplied name, if any
+        if name:
+            if type(name) != str:
+                raise TypeError("'name' must be entered as a string.")
+
         # Begin name selection if not supplied
-        if not name:
+        else:
             name = ''
             given_name = ''
             family_name = ''
@@ -308,7 +321,7 @@ class Character:
             elif race.name=='Dragonborn':
                 name = f'{family_name} {given_name}'
 
-        # Verify supplied alignment, if any
+        # Validate supplied alignment, if any
         if alignment:
             if type(alignment)!=list:
                 raise TypeError('Alignment must be a list.')
@@ -325,7 +338,7 @@ class Character:
             else:
                 alignment = select(alignments)
 
-        # Verify supplied height, if any
+        # Validate supplied height, if any
         if height:
             if type(height)!=int:
                 raise TypeError('Height must be an integer (inches).')
@@ -334,7 +347,7 @@ class Character:
             elif height > 120:
                 raise ValueError('Height must be at most 120 inches.')
 
-        # Verify supplied weight, if any
+        # Validate supplied weight, if any
         if weight:
             if type(weight)!=int:
                 raise TypeError('Weight must be an integer (pounds).')
