@@ -5,10 +5,10 @@ from character_generator.utils.races import (dwarf, elf, halfling,
                                              human, dragonborn, gnome,
                                              half_elf, half_orc,
                                              tiefling)
-from character_generator.utils.klass import (barbarian, bard, cleric,
-                                             druid, fighter, monk,
-                                             paladin, ranger, rogue,
-                                             sorcerer, warlock, wizard)
+from character_generator.utils.klasses import (barbarian, bard, cleric,
+                                               druid, fighter, monk,
+                                               paladin, ranger, rogue,
+                                               sorcerer, warlock, wizard)
 
 
 class Character:
