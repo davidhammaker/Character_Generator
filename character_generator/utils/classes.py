@@ -92,3 +92,52 @@ class Background:
 
     def __repr__(self):
         return f"Background('{self.name}')"
+
+
+class Money:
+    """A class defining quantities of money."""
+
+    def __init__(self, cp=0, sp=0, ep=0, gp=0, pp=0):
+        self.cp = cp
+        self.sp = sp
+        self.ep = ep
+        self.gp = gp
+        self.pp = pp
+
+    def __repr__(self):
+        total = ''
+        if self.cp > 0:
+            total += f'{self.cp}cp'
+        if self.sp > 0:
+            if total != '':
+                total += ', '
+            total += f'{self.sp}sp'
+        if self.ep > 0:
+            if total != '':
+                total += ', '
+            total += f'{self.ep}ep'
+        if self.gp > 0:
+            if total != '':
+                total += ', '
+            total += f'{self.gp}gp'
+        if self.pp > 0:
+            if total != '':
+                total += ', '
+            total += f'{self.pp}pp'
+        return f'Money({total})'
+
+    def __add__(self, other):
+        cp = self.cp + other.cp
+        sp = self.sp + other.sp
+        ep = self.ep + other.ep
+        gp = self.gp + other.gp
+        pp = self.pp + other.pp
+        return Money(cp=cp, sp=sp, ep=ep, gp=gp, pp=pp)
+
+    def __sub__(self, other):
+        cp = self.cp - other.cp
+        sp = self.sp - other.sp
+        ep = self.ep - other.ep
+        gp = self.gp - other.gp
+        pp = self.pp - other.pp
+        return Money(cp=cp, sp=sp, ep=ep, gp=gp, pp=pp)
