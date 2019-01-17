@@ -16,10 +16,11 @@ class Character:
 
     def __init__(self, name, race, height, weight, alignment, klass,
                  background, gender, age, subrace=None, archetype=None,
-                 archetype_sub=None, level=1):
+                 archetype_sub=None, subrace_sub=None, level=1):
         self.name = name
         self.race = race
         self.subrace = subrace
+        self.subrace_sub = subrace_sub
         self.height = height
         self.weight = weight
         self.gender = gender
@@ -140,8 +141,8 @@ class Character:
         return height, weight
 
     @classmethod
-    def create(cls, level=1, race=None, subrace=None, gender=None,
-               age=None, age_range_wide=False, name=None,
+    def create(cls, level=1, race=None, subrace=None, subrace_sub=None,
+               gender=None, age=None, age_range_wide=False, name=None,
                alignment=None, no_evil=True, height=None, weight=None,
                klass=None, archetype=None, archetype_sub=None,
                background=None):
@@ -240,6 +241,26 @@ class Character:
         else:
             if race.subraces:
                 subrace = select(race.subraces)
+
+        # Validate supplied subrace subcategory, if any
+        if subrace_sub:
+            if type(subrace_sub) != str:
+                raise TypeError("'subrace_sub' must be entered as a "
+                                "string.")
+            elif subrace_sub.title() not in subrace.subcategories:
+                raise NameError(f"'{subrace_sub}' is not a valid "
+                                f"subcategory of '{subrace.name}'.")
+            else:
+                for one_subrace_sub in subrace.subcategories:
+                    if subrace_sub.title() == one_subrace_sub:
+                        subrace_sub = one_subrace_sub
+                        break
+
+        # Select subrace subcategory if not supplied
+        else:
+            if subrace:
+                if subrace.subcategories:
+                    subrace_sub = select(subrace.subcategories)
 
         # Validate supplied gender, if any
         if gender:
@@ -489,6 +510,7 @@ class Character:
                    gender=gender,
                    age=age,
                    subrace=subrace,
+                   subrace_sub=subrace_sub,
                    archetype=archetype,
                    archetype_sub=archetype_sub,
                    level=level)

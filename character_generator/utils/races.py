@@ -85,7 +85,8 @@ for subrace in _elf_subrace_spec:
     _elf_subraces.append(Subrace
                          (name=subrace,
                           sizes=_elf_subrace_spec[subrace]['sizes'],
-                          types=_elf_subrace_spec[subrace]['types']))
+                          subcategories=
+                          _elf_subrace_spec[subrace]['types']))
 
 # Elf ages
 _elf_age_range = [1, 750]

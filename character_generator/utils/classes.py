@@ -1,9 +1,10 @@
 class Subrace:
     """A class defining subraces for each Race."""
 
-    def __init__(self, name, names=None, sizes=None, types=None):
+    def __init__(self, name, names=None, sizes=None,
+                 subcategories=None):
         self.name = name
-        self.types = types
+        self.subcategories = subcategories
         self.sizes = sizes
         self.names = names
 
