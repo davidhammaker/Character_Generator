@@ -419,20 +419,46 @@ class Character:
                                      f"archetypes to level "
                                      f"{klass.archetype_level_req} and "
                                      f"higher.")
-            else:
-                valid_archetype = False
-                for one_archetype in klass.archetypes:
-                    if archetype.title() == one_archetype.name.title():
-                        valid_archetype = True
-                        archetype = one_archetype
-                        break
-                if not valid_archetype:
-                    raise NameError(f"'{archetype}' is not a valid "
-                                    f"archetype.")
+            valid_archetype = False
+            for one_archetype in klass.archetypes:
+                if archetype.title() == one_archetype.name.title():
+                    valid_archetype = True
+                    archetype = one_archetype
+                    break
+            if not valid_archetype:
+                raise NameError(f"'{archetype}' is not a valid "
+                                f"archetype.")
 
         # Select archetype if not supplied
         else:
-            archetype = select(klass.archetypes)
+            if klass.archetype_level_req:
+                if level >= klass.archetype_level_req:
+                    archetype = select(klass.archetypes)
+
+        # Validate archetype subcategory, if supplied
+        if archetype_sub:
+            if type(archetype_sub) != str:
+                raise TypeError("'archetype_sub' must be entered as a "
+                                "string.")
+            elif not archetype:
+                raise AttributeError("A non-existent archetype cannot "
+                                     "have a subcategory.")
+            elif not archetype.subcategories:
+                raise AttributeError(f"'{archetype.name}' has no "
+                                     f"subcategories.")
+            else:
+                valid_archetype_sub = False
+                for one_archetype_sub in archetype.subcategories:
+                    if archetype_sub.title() == one_archetype_sub:
+                        valid_archetype_sub = True
+                        archetype_sub = one_archetype_sub
+                        break
+                if not valid_archetype_sub:
+                    raise NameError(f"'{archetype_sub}' is not a valid "
+                                    f"archetype subcategory.")
+
+        # Select archetype subcategory if not supplied
+        elif archetype:
             if archetype.subcategories:
                 archetype_sub = select(archetype.subcategories)
 
