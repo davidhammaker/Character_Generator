@@ -215,6 +215,7 @@ class Character:
                 for one_race in cls.races:
                     if race.title() == one_race.name:
                         race = one_race
+                        break
 
         # Select race if not supplied
         else:
@@ -230,6 +231,7 @@ class Character:
                     if subrace.lower() == one_subrace.name.lower():
                         valid_subrace = True
                         subrace = one_subrace
+                        break
                 if not valid_subrace:
                     raise NameError(f"'{subrace}' is not a valid "
                                     f"subrace for '{race}'.")
@@ -400,6 +402,7 @@ class Character:
                 for one_klass in cls.klasses:
                     if klass.title() == one_klass.name:
                         klass = one_klass
+                        break
 
         # Select klass if not supplied
         else:
@@ -422,6 +425,7 @@ class Character:
                     if archetype.title() == one_archetype.name.title():
                         valid_archetype = True
                         archetype = one_archetype
+                        break
                 if not valid_archetype:
                     raise NameError(f"'{archetype}' is not a valid "
                                     f"archetype.")
