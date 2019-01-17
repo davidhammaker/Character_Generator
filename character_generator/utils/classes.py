@@ -66,3 +66,29 @@ class Klass:
 
     def __repr__(self):
         return f'Klass({self.name})'
+
+
+class Background:
+    """A class defining character backgrounds."""
+
+    def __init__(self, name, skill_profs, tool_profs,
+                 tool_prof_selection, equipment, equipment_selections,
+                 selections, money, personalities, ideals, bonds, flaws,
+                 languages=None, details=None):
+        self.name = name
+        self.skill_profs = skill_profs
+        self.tool_profs = tool_profs
+        self.tool_prof_selection = tool_prof_selection
+        self.equipment = equipment
+        self.equipment_selections = equipment_selections
+        self.selections = selections
+        self.money = money
+        self.personalities = personalities
+        self.ideals = ideals
+        self.bonds = bonds
+        self.flaws = flaws
+        self.languages = languages
+        self.details = details
+
+    def __repr__(self):
+        return f"Background('{self.name}')"
