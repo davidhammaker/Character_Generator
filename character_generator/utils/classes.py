@@ -71,9 +71,10 @@ class Klass:
 class Background:
     """A class defining character backgrounds."""
 
-    def __init__(self, name, skill_profs, tool_profs,
-                 tool_prof_selection, equipment, equipment_selections,
-                 selections, money, personalities, ideals, bonds, flaws,
+    def __init__(self, name, personalities, ideals, bonds, flaws,
+                 skill_profs=None, tool_profs=None,
+                 tool_prof_selection=None, equipment=None,
+                 equipment_selections=None, selections=None, money=None,
                  languages=None, details=None):
         self.name = name
         self.skill_profs = skill_profs
@@ -83,12 +84,12 @@ class Background:
         self.equipment_selections = equipment_selections
         self.selections = selections
         self.money = money
+        self.languages = languages
+        self.details = details
         self.personalities = personalities
         self.ideals = ideals
         self.bonds = bonds
         self.flaws = flaws
-        self.languages = languages
-        self.details = details
 
     def __repr__(self):
         return f"Background('{self.name}')"
