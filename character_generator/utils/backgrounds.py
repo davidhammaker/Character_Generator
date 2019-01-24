@@ -152,7 +152,8 @@ _criminal_skill_profs = \
 _criminal_tool_profs = \
     ['thieves\' tools']
 _criminal_tool_prof_selection = \
-    ['dice set', 'dragonchess set',
+    ['dice set',
+     'dragonchess set',
      'playing card set',
      'Three-Dragon Ante set']
 
@@ -221,3 +222,97 @@ criminal = \
                ideals=_criminal_ideals,
                bonds=_criminal_bonds,
                flaws=_criminal_flaws)
+
+# Entertainer
+# Entertainer skill proficiencies
+_entertainer_skill_profs = \
+    ['Acrobatics',
+     'Performance']
+
+# Entertainer tool proficiencies
+_entertainer_tool_profs = \
+    ['disguise kit']
+_entertainer_tool_prof_selection = \
+    ['bagpipes',
+     'drum',
+     'dulcimer',
+     'fluit',
+     'lute',
+     'lyre',
+     'horn',
+     'pan flute',
+     'shawm',
+     'viol']
+
+# Entertainer equipment
+_entertainer_equipment = ['costume']
+_entertainer_equipment_selections = \
+    [[instrument for instrument in _entertainer_tool_prof_selection],
+     ['love letter (admirer\'s favor)',
+      'lock of hair (admirer\'s favor)',
+      'trinket (admirer\'s favor)']]
+
+# Entertainer selection
+_entertainer_selection = \
+    ['Entertainer Routine: Actor',
+     'Entertainer Routine: Dancer',
+     'Entertainer Routine: Fire-eater',
+     'Entertainer Routine: Jester',
+     'Entertainer Routine: Juggler',
+     'Entertainer Routine: Instrumentalist',
+     'Entertainer Routine: Poet',
+     'Entertainer Routine: Singer',
+     'Entertainer Routine: Storyteller',
+     'Entertainer Routine: Tumbler']
+
+# Entertainer details
+_entertainer_details = 'Feature: By Popular Demand'
+
+# Entertainer characteristics
+_entertainer_personalities = \
+    ['I know a story relevant to almost every situation.',
+     'Whenever I come to a new place, I collect local rumors and spread gossip.',
+     'I\'m a hopeless romantic, always searching for that "special someone."',
+     'Nobody stays angry at me or around me for long, since I can defuse any amount of tension.',
+     'I love a good insult, even one directed at me.',
+     'I get bitter if I\'m not the center of attention.',
+     'I\'ll settle for nothing less than perfection.',
+     'I change my mood or my mind as quickly as I change key in a song.']
+_entertainer_ideals = \
+    ['Beauty. When I perform, I make the world better than it was. (Good)',
+     'Tradition. The stories, legends, and songs of the past must never be forgotten, for they teach us who we are. (Lawful)',
+     'Creativity. The world is in need of new ideas and bold action. (Chaotic)',
+     'Greed. I\'m only in it for the money and fame. (Evil)',
+     'People. I like seeing the smiles on people\'s faces when I perform. That\'s all that matters. (Neutral)',
+     'Honesty. Art should reflect the soul; it should come from within and reveal who we really are. (Any)']
+_entertainer_bonds = \
+    ['My instrument is my most treasured possession, and it reminds me of someone I love.',
+     'Someone stole my precious instrument, and someday I\'ll get it back.',
+     'I want to be famous, whatever it takes.',
+     'I idolize a hero of the old tales and measure my deeds against that person\'s.',
+     'I will do anything to prove myself superior to my hated rival.',
+     'I would do anything for the other members of my old troupe.']
+_entertainer_flaws = \
+    ['I\'ll do anything to win fame and renown.',
+     'I\'m a sucker for a pretty face.',
+     'A scandal prevents me from ever going home again. That kind of trouble seems to follow me around.',
+     'I once satirized a noble who still wants my head. It was a mistake that I will likely repeat.',
+     'I have trouble keeping my true feelings hidden. My sharp tongue lands me in trouble.',
+     'Despite my best efforts, I am unreliable to my friends.']
+
+# Entertainer Background
+entertainer = \
+    Background(name='Entertainer',
+               skill_profs=_entertainer_skill_profs,
+               tool_profs=_entertainer_tool_profs,
+               tool_prof_selection=_entertainer_tool_prof_selection,
+               equipment=_entertainer_equipment,
+               equipment_selections=_entertainer_equipment_selections,
+               selections=_entertainer_selection,
+               money=Money(gp=15),
+               languages=0,
+               details=_entertainer_details,
+               personalities=_entertainer_personalities,
+               ideals=_entertainer_ideals,
+               bonds=_entertainer_bonds,
+               flaws=_entertainer_flaws)
