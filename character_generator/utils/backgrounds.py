@@ -414,3 +414,109 @@ folkhero = \
                ideals=_folkhero_ideals,
                bonds=_folkhero_bonds,
                flaws=_folkhero_flaws)
+
+# Guild Artisan
+# Guild Artisan skill proficiencies
+_guildartisan_skill_profs = \
+    ['Insight',
+     'Persuasion']
+
+# Guild Artisan tool proficiencies
+_guildartisan_tool_prof_selection = \
+    ['alchemist\'s supplies',
+     'brewer\'s supplies',
+     'calligrapher\'s supplies',
+     'carpenter\'s tools',
+     'cartographer\'s tools',
+     'cobbler\'s tools',
+     'cook\'s utensils',
+     'glassblower\'s tools',
+     'jeweler\'s tools',
+     'leatherworker\'s tools',
+     'mason\'s tools',
+     'painter\'s supplies',
+     'potter\'s tools',
+     'smith\'s tools',
+     'tinker\'s tools',
+     'weaver\'s tools',
+     'woodcarver\'s tools']
+
+# Guild Artisan equipment
+_guildartisan_equipment = ['letter of introduction from your guild', 'traveler\'s clothes']
+_guildartisan_equipment_selections = \
+    [[tool for tool in _guildartisan_tool_prof_selection]]
+
+# Guild Artisan selection
+_guildartisan_selection = \
+    ['Guild Business: Alchemists and apothecaries',
+     'Guild Business: Armorers, locksmiths, and finesmiths',
+     'Guild Business: Brewers, distillers, vintners',
+     'Guild Business: Calligraphers, scribes, and scriveners',
+     'Guild Business: Carpenters, roofers, and plasterers',
+     'Guild Business: Cartographers, surveyors, and chart-makers',
+     'Guild Business: Cobblers and shoemakers',
+     'Guild Business: Cooks and bakers',
+     'Guild Business: Glassblowers and glaziers',
+     'Guild Business: Jewelers and gemcutters',
+     'Guild Business: Leatherworkers, skinners, and tanners',
+     'Guild Business: Masons and stonecutters',
+     'Guild Business: Painters, limners, and sign-makers',
+     'Guild Business: Potters and tile-makers',
+     'Guild Business: Shipwrights and sailmakers',
+     'Guild Business: Smiths and metal-forgers',
+     'Guild Business: Tinkers, pewterers, and casters',
+     'Guild Business: Wagon-makers and wheelwrights',
+     'Guild Business: Weavers and dyers',
+     'Guild Business: Woodcarvers, coopers, and bowyers']
+
+# Guild Artisan details
+_guildartisan_details = 'Feature: Guild Membership'
+
+# Guild Artisan characteristics
+_guildartisan_personalities = \
+    ['I believe that anything worth doing is worth doing right. I can\'t help it--I\'m a perfectionist.',
+     'I\'m a snob who looks down on those who can\'t appreciate fine art.',
+     'I always want to know how things work and what makes people tick.',
+     'I\'m full of witty aphorisms and have a proverb for every occasion.',
+     'I\'m rude to people who lack my commitment to hard work and fair play.',
+     'I like to talk at length about my profession.',
+     'I don\'t part with my money easily and will haggle tirelessly to get the best deal possible.',
+     'I\'m well known for my work, and I want to make sure everyone appreciates it. I\'m always taken aback when people haven\'t heard of me.']
+_guildartisan_ideals = \
+    ['Community. It is the duty of all civilized people to strengthen the bonds of community and the security of civilization. (Lawful)',
+     'Generosity. My talents were to me so that I could use them to benefit the world. (Good)',
+     'Freedom. Everyone should be free to pursue his or her own livelihood. (Chaotic)',
+     'Greed. I\'m only in it for the money. (Evil)',
+     'People. I\'m committed to the people I care about, not the ideals. (Neutral)',
+     'Aspiration. I work hard to be the best there is at my craft. (Any)']
+_guildartisan_bonds = \
+    ['The workshop where I learned my trade is the most important place in the world to me.',
+     'I created a great work for someone, and then found them unworthy to receive it. I\'m still looking for someone worthy.',
+     'I owe my guild a great debt for forging me into the person I am today.',
+     'I pursue wealth to secure someone\'s love.',
+     'One day I will return to my guild and prove that I am the greatest artisan of them all.',
+     'I will get revenge on the evil forces that destroyed my place of business and ruined my livelihood.']
+_guildartisan_flaws = \
+    ['I\'ll do anything to get my hands on something rare or priceless.',
+     'I\'m quick to assume that someone is trying to cheat me.',
+     'No one must ever learn that I once stole money from guild coffers.',
+     'I\'m never satisfied with what I have--I always want more.',
+     'I would kill to acquire a noble title.',
+     'I\'m horribly jealous of anyone who can outshine my handiwork. Everywhere I go, I\'m surrounded by rivals.']
+
+# Guild Artisan Background
+guildartisan = \
+    Background(name='Guild Artisan',
+               skill_profs=_guildartisan_skill_profs,
+               tool_profs=None,
+               tool_prof_selection=_guildartisan_tool_prof_selection,
+               equipment=_guildartisan_equipment,
+               equipment_selections=_guildartisan_equipment_selections,
+               selections=_guildartisan_selection,
+               money=Money(gp=15),
+               languages=1,
+               details=_guildartisan_details,
+               personalities=_guildartisan_personalities,
+               ideals=_guildartisan_ideals,
+               bonds=_guildartisan_bonds,
+               flaws=_guildartisan_flaws)
