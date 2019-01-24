@@ -178,7 +178,7 @@ _criminal_details = 'Feature: Criminal Contact'
 _criminal_personalities = \
     ['I always have a plan for what to do when things go wrong.',
      'I am always calm, no matter what the situation. I never raise my voice or let my emotions control me.',
-     'The first thing I do in a new place is note the locations of everything valuable -- or where such things could be hidden.',
+     'The first thing I do in a new place is note the locations of everything valuable--or where such things could be hidden.',
      'I would rather make a new friend than a new enemy.',
      'I am incredibly slow to trust. Those who seem the fairest often have the most to hide.',
      'I don\'t pay attention to the risks in a situation. Never tell me the odds.',
@@ -316,3 +316,101 @@ entertainer = \
                ideals=_entertainer_ideals,
                bonds=_entertainer_bonds,
                flaws=_entertainer_flaws)
+
+# Folk Hero
+# Folk Hero skill proficiencies
+_folkhero_skill_profs = \
+    ['Animal Handling',
+     'Survival']
+
+# Folk Hero tool proficiencies
+_folkhero_tool_profs = \
+    ['vehicles (land)']
+_folkhero_tool_prof_selection = \
+    ['alchemist\'s supplies',
+     'brewer\'s supplies',
+     'calligrapher\'s supplies',
+     'carpenter\'s tools',
+     'cartographer\'s tools',
+     'cobbler\'s tools',
+     'cook\'s utensils',
+     'glassblower\'s tools',
+     'jeweler\'s tools',
+     'leatherworker\'s tools',
+     'mason\'s tools',
+     'painter\'s supplies',
+     'potter\'s tools',
+     'smith\'s tools',
+     'tinker\'s tools',
+     'weaver\'s tools',
+     'woodcarver\'s tools']
+
+# Folk Hero equipment
+_folkhero_equipment = ['shovel', 'iron pot', 'common clothes']
+_folkhero_equipment_selections = \
+    [[tool for tool in _folkhero_tool_prof_selection]]
+
+# Folk Hero selection
+_folkhero_selection = \
+    ['Defining Event: I stood up to a tyrant\'s agents.',
+     'Defining Event: I saved people during a natural disaster.',
+     'Defining Event: I stood alone against a terrible monster.',
+     'Defining Event: I stole from a corrup merchant to help the poor.',
+     'Defining Event: I led a militia to fight off an invading army.',
+     'Defining Event: I broke into a tyrant\'s castle and stole weapons to arm the people.',
+     'Defining Event: I trained the peasantry to use farm implements as weapons against a tyrant\'s soldiers.',
+     'Defining Event: A lord rescinded an unpopular decree after I led a symbolic act of protest against it.',
+     'Defining Event: A celestial, fey, or similar creature gave me a blessing or revealed my secret origin.',
+     'Defining Event: Recruited into a lord\'s army, I rose to leadership and was commended for my heroism.']
+
+# Folk Hero details
+_folkhero_details = 'Feature: Rustic Hospitality'
+
+# Folk Hero characteristics
+_folkhero_personalities = \
+    ['I judge people by their actions, not their words.',
+     'If someone is in trouble, I\'m always ready to lend help.',
+     'When I set my mind to something, I follow through no matter what gets in my way.',
+     'I have a strong sense of fair play and always try to find the most equitable solution to arguments.',
+     'I\'m confident in my own abilities and do what I can to instill confidence in others.',
+     'Thinking is for other people. I prefer action.',
+     'I misuse long words in an attempt to sound smarter.',
+     'I get bored easily. When am I going to get on with my destiny?']
+_folkhero_ideals = \
+    ['Respect. People deserve to be treated with dignity and respect. (Good)',
+     'Fairness. No one should get preferential treatment before the law, and no one is above the law. (Lawful)',
+     'Freedom. Tyrants must not be allowed to oppress the people. (Chaotic)',
+     'Might. If I become strong, I can take what I want--what I deserve. (Evil)',
+     'Sincerity. There\'s no good in pretending to be something I\'m not. (Neutral)',
+     'Destiny. Nothing and no one can steer me away from my higher calling. (Any)']
+_folkhero_bonds = \
+    ['I have a family, but I have no idea where they are. One day, I hope to see them again.',
+     'I worked the land, I love the land, and I will protect the land.',
+     'A proud noble once gave me a horrible beating, and I will take my revenge on any bully I encounter.',
+     'My tools are symbols of my past life, and I carry them so that I will never forget my roots.',
+     'I protect those who cannot protect themselves',
+     'I wish my childhood sweetheart had come with me to pursue my destiny.']
+_folkhero_flaws = \
+    ['The tyrant who rules my land will stop at nothing to see me killed.',
+     'I\'m convinced of the significance of my destiny, and blind to my shortcomings and the risk of failure.',
+     'The people who knew me when I was young know my shameful secret, so I can never go home again.',
+     'I have a weakness for the vices of the city, especially hard drink.',
+     'Secretly, I believe that things would be better if I were a tyrant lording over the land.',
+     'I have trouble trusting in my allies.']
+
+# Folk Hero Background
+folkhero = \
+    Background(name='Folk Hero',
+               skill_profs=_folkhero_skill_profs,
+               tool_profs=_folkhero_tool_profs,
+               tool_prof_selection=_folkhero_tool_prof_selection,
+               equipment=_folkhero_equipment,
+               equipment_selections=_folkhero_equipment_selections,
+               selections=_folkhero_selection,
+               money=Money(gp=10),
+               languages=0,
+               details=_folkhero_details,
+               personalities=_folkhero_personalities,
+               ideals=_folkhero_ideals,
+               bonds=_folkhero_bonds,
+               flaws=_folkhero_flaws)
