@@ -65,3 +65,80 @@ acolyte = \
                bonds=_acolyte_bonds,
                flaws=_acolyte_flaws)
 
+# Charlatan
+# Charlatan skill proficiencies
+_charlatan_skill_profs = ['Deception',
+                          'Sleight of Hand']
+
+# Charlatan tool proficiencies
+_charlatan_tool_profs = ['disguise kit',
+                         'forgery kit']
+
+# Charlatan equipment
+_charlatan_equipment = ['fine clothes', 'disguise kit']
+_charlatan_equipment_selections = \
+    [['ten stoppered bottles filled with colored liquid',
+      'a set of weighted dice', 'a deck of marked cards',
+      'a signet ring of an imaginary duke']]
+
+# Charlatan selection
+_charlatan_selection = \
+    ['Favorite scheme: I cheat at games of chance.',
+     'Favorite scheme: I shave coins or forge documents.',
+     'Favorite scheme: I insinuate myself into people\'s lives to prey on their weakness and secure their fortunes.',
+     'Favorite scheme: I put on new identities like clothes.',
+     'Favorite scheme: I run sleight-of-hand cons on street corners.',
+     'Favorite scheme: I convince people that worthless junk is worth their hard-earned money.']
+
+# Charlatan details
+_charlatan_details = 'Feature: False Identity'
+
+# Charlatan characteristics
+_charlatan_personalities = \
+    ['I fall in and out of love easily, and am always pursuing someone.',
+     'I have a joke for every occasion, especially occasions where humor is inappropriate.',
+     'Flattery is my preferred trick for getting what I want.',
+     'I\'m a born gambler who can\'t resist taking a risk for a potential payoff.',
+     'I lie about almost everything, even when there\'s no good reason to.',
+     'Sarcasm and insults are my weapons of choice.',
+     'I keep multiple holy symbols on me and invoke whatever deity might come in useful at any given moment.',
+     'I pocket anything I see that might have some value.']
+_charlatan_ideals = \
+    ['Independence. I am a free spirit--no one tells me what to do. (Chaotic)',
+     'Fairness. I never target people who can\'t afford to lose a few coins. (Lawful)',
+     'Charity. I distribute the money I acquire to the people who really need it. (Good)',
+     'Creativity. I never run the same con twice. (Chaotic)',
+     'Friendship. Material goods come and go. Bonds of friendship last forever. (Good)',
+     'Aspiration. I\'m determined to make something of myself.']
+_charlatan_bonds = \
+    ['I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.',
+     'I owe everything to my mentor--a horrible person who\'s probably rotting in jail somewhere.',
+     'Somewhere out there, I have a child who doesn\'t know me. I\'m making the world better for him or her.',
+     'I come from a noble family, and one day I\'ll reclame my lands and title from those who stole them from me.',
+     'A powerful person killed someone I love. Some day soon, I\'ll have my revenge.',
+     'I swindled and ruined a person who didn\'t deserve it. I seek to atone for my misdeeds but might never be able to forgive myself.']
+_charlatan_flaws = \
+    ['I can\'t resist a pretty face.',
+     'I\'m always in debt. I spend my ill-gotten gains on decadent luxuries faster than I bring them in.',
+     'I\'m conviniced that no one could ever fool me the way I fool others.',
+     'I\'m too greedy for my own good. I can\'t resist taking a risk if there\'s money involved.',
+     'I can\'t resist swindling people who are more powerful than me.',
+     'I hate to admit it and will hate myself for it, but I\'ll run and preserve my own hide if the going gets tough.']
+
+# Charlatan Background
+charlatan = \
+    Background(name='Charlatan',
+               skill_profs=_charlatan_skill_profs,
+               tool_profs=_charlatan_tool_profs,
+               tool_prof_selection=None,
+               equipment=_charlatan_equipment,
+               equipment_selections=_charlatan_equipment_selections,
+               selections=_charlatan_selection,
+               money=Money(gp=15),
+               languages=0,
+               details=_charlatan_details,
+               personalities=_charlatan_personalities,
+               ideals=_charlatan_ideals,
+               bonds=_charlatan_bonds,
+               flaws=_charlatan_flaws)
+
