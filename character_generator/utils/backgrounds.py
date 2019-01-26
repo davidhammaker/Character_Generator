@@ -20,10 +20,8 @@ _acolyte_personalities = \
      'I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.',
      'I see omens in every event and action. The gods try to speak to us, we just need to listen.',
      'Nothing can shake my optimistic attitude.',
-     'I quote sacred texts and proverbs in almost every situation.',
-     'I misquote sacred texts and proverbs in almost every situation.',
-     'I am tolerant of other faiths and respect the worship of other gods.',
-     'I am intolerant of other faiths and condemn the worship of other gods.',
+     'I quote (or misquote) sacred texts and proverbs in almost every situation.',
+     'I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods.',
      'I\'ve enjoyed fine food, drink, and high society among my temple\'s elite. Rough living grates on me.',
      'I\'ve spent so long in the temple that I have little practical experience dealing with people in the outside world.']
 _acolyte_ideals = \
