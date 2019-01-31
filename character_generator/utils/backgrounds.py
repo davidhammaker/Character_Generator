@@ -12,7 +12,7 @@ _acolyte_equipment_selections = [['Amulet', 'Emblem', 'Reliquary'],
                                  ['Prayer book', 'Prayer wheel']]
 
 # Acolyte details
-_acolyte_details = 'Feature: Shelter of the Faithful'
+_acolyte_details = 'Feature: Shelter of the Faithful (pg. 127)'
 
 # Acolyte characteristics
 _acolyte_personalities = \
@@ -89,7 +89,7 @@ _charlatan_selection = \
      'Favorite scheme: I convince people that worthless junk is worth their hard-earned money.']
 
 # Charlatan details
-_charlatan_details = 'Feature: False Identity'
+_charlatan_details = 'Feature: False Identity (pg. 128)'
 
 # Charlatan characteristics
 _charlatan_personalities = \
@@ -170,7 +170,7 @@ _criminal_selection = \
      'Criminal Specialty: Smuggler']
 
 # Criminal details
-_criminal_details = 'Feature: Criminal Contact'
+_criminal_details = 'Feature: Criminal Contact (pg. 129)'
 
 # Criminal characteristics
 _criminal_personalities = \
@@ -264,7 +264,7 @@ _entertainer_selection = \
      'Entertainer Routine: Tumbler']
 
 # Entertainer details
-_entertainer_details = 'Feature: By Popular Demand'
+_entertainer_details = 'Feature: By Popular Demand (pg. 130)'
 
 # Entertainer characteristics
 _entertainer_personalities = \
@@ -362,7 +362,7 @@ _folkhero_selection = \
      'Defining Event: Recruited into a lord\'s army, I rose to leadership and was commended for my heroism.']
 
 # Folk Hero details
-_folkhero_details = 'Feature: Rustic Hospitality'
+_folkhero_details = 'Feature: Rustic Hospitality (pg. 131)'
 
 # Folk Hero characteristics
 _folkhero_personalities = \
@@ -469,7 +469,7 @@ _guildartisan_selection = \
      'Guild Business: Woodcarvers, coopers, and bowyers']
 
 # Guild Artisan details
-_guildartisan_details = 'Feature: Guild Membership'
+_guildartisan_details = 'Feature: Guild Membership (pg. 133)'
 
 # Guild Artisan characteristics
 _guildartisan_personalities = \
