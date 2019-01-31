@@ -1019,3 +1019,93 @@ soldier = \
                ideals=_soldier_ideals,
                bonds=_soldier_bonds,
                flaws=_soldier_flaws)
+
+
+# Urchin
+# Urchin skill proficiencies
+_urchin_skill_profs = \
+    ['Sleight of Hand',
+     'Stealth']
+
+# Urchin tool proficiencies
+_urchin_tool_profs = \
+    ['disguise kit', 'thieves\' tools']
+_urchin_tool_prof_selection = \
+    None
+
+# Urchin equipment
+_urchin_equipment = \
+    ['small knife',
+     'map of the city you grew up in',
+     'pet mouse',
+     'token to remember your parents by',
+     'common clothes']
+_urchin_equipment_selections = \
+    [['dagger (trophy taken from a fallen enemy',
+      'broken blade (trophy taken from a fallen enemy',
+      'piece of a banner (trophy taken from a fallen enemy'],
+     ['set of bone dice',
+      'deck of cards']]
+
+# Urchin selection
+_urchin_selection = \
+    ['Specialty: Officer',
+     'Specialty: Scout',
+     'Specialty: Infantry',
+     'Specialty: Cavalry',
+     'Specialty: Healer',
+     'Specialty: Quartermaster',
+     'Specialty: Standard bearer',
+     'Specialty: Support staff (cook, blacksmith, or the like)']
+
+# Urchin details
+_urchin_details = 'Feature: City Secrets (pg. 141)'
+
+# Urchin characteristics
+_urchin_personalities = \
+    ['I hide scraps of food and trinkets away in my pockets.',
+     'I ask a lot of questions.',
+     'I like to squeeze into small places where no one else can get to me.',
+     'I sleep with my back to a wall or tree, with everything I own wrapped in a bundle in my arms.',
+     'I eat like a pig and have bad manners.',
+     'I think anyone who\'s nice to me is hiding evil intent.',
+     'I don\'t like to bathe.',
+     'I bluntly say what other people are hinting at or hiding.']
+_urchin_ideals = \
+    ['Respect. All people, rich or poor, deserve respect. (Good)',
+     'Community. We have to take care of each other, because no one else is going to do it. (Lawful)',
+     'Change. The low are lifted up, and the high and mighty are brought down. Change is the nature of things. (Chaotic)',
+     'Retribution. The rich need to be shown what life and death are like in the gutters. (Evil)',
+     'People. I help the people who help me--that\'s what keeps us alive. (Neutral)',
+     'Aspiration. I\'m going to prove that I\'m worthy of a better life. (Any)']
+_urchin_bonds = \
+    ['My town or city is my home, and I\'ll fight to defend it.',
+     'I sponsor an orphanage to keep others from enduring what I was forced to endure.',
+     'I owe my survival to another urchin who taught me to live on the streets.',
+     'I owe a debt I can never repay to the person who took pity on me.',
+     'I escaped my life of poverty by robbing an important person, and I\'m wanted for it.',
+     'No one else should have to endure the hardships I\'ve been through.']
+_urchin_flaws = \
+    ['If I\'m outnumbered, I will run away from a fight.',
+     'Gold seems like a lot of money to me, and I\'ll do just about anything for more of it.',
+     'I will never fully trust anyone other than myself.',
+     'I\'d rather kill someone in their sleep than fight fair.',
+     'It\'s not stealing if I need it more than someone else.',
+     'People who can\'t take care of themselves get what they deserve.']
+
+# Urchin Background
+urchin = \
+    Background(name='Urchin',
+               skill_profs=_urchin_skill_profs,
+               tool_profs=_urchin_tool_profs,
+               tool_prof_selection=_urchin_tool_prof_selection,
+               equipment=_urchin_equipment,
+               equipment_selections=_urchin_equipment_selections,
+               selections=_urchin_selection,
+               money=Money(gp=10),
+               languages=0,
+               details=_urchin_details,
+               personalities=_urchin_personalities,
+               ideals=_urchin_ideals,
+               bonds=_urchin_bonds,
+               flaws=_urchin_flaws)
