@@ -339,14 +339,13 @@ class Character:
                                           'generated.')
 
             # Construct name
-            # (Dwarf, Elf, Halfling, Human, Gnome)
-            if race.name in ['Dwarf', 'Elf', 'Halfling', 'Human',
-                             'Gnome']:
-                name = f'{given_name} {family_name}'
-
-            # Construct Dragonborn name
-            elif race.name == 'Dragonborn':
+            # Dragonborn name
+            if race.name == 'Dragonborn':
                 name = f'{family_name} {given_name}'
+
+            # Other names
+            elif race.name not in ['Half-Elf', 'Half-Orc', 'Tiefling']:
+                name = f'{given_name} {family_name}'
 
         # Validate supplied alignment, if any
         if alignment:
