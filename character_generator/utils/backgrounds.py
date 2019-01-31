@@ -30,6 +30,11 @@ _artisan_tools = \
      'tinker\'s tools',
      'weaver\'s tools',
      'woodcarver\'s tools']
+_gaming_sets = \
+    ['dice set',
+     'dragonchess set',
+     'playing card set',
+     'Three-Dragon Ante set']
 
 # Acolyte
 # Acolyte skill proficiencies
@@ -183,10 +188,7 @@ _criminal_skill_profs = \
 _criminal_tool_profs = \
     ['thieves\' tools']
 _criminal_tool_prof_selection = \
-    ['dice set',
-     'dragonchess set',
-     'playing card set',
-     'Three-Dragon Ante set']
+    _gaming_sets
 
 # Criminal equipment
 _criminal_equipment = ['crowbar', 'dark common clothes with hood']
