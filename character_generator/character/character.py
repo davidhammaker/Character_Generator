@@ -52,8 +52,6 @@ class Character:
 
     races = [dwarf, elf, halfling, human, dragonborn, gnome, half_elf,
              half_orc, tiefling]
-    race_names = ['dwarf', 'elf', 'halfling', 'human', 'dragonborn',
-                  'gnome', 'half-elf', 'half-orc', 'tiefling']
     klasses = [barbarian, bard, cleric, druid, fighter, monk, paladin,
                ranger, rogue, sorcerer, warlock, wizard]
     klasses_names = ['barbarian', 'bard', 'cleric', 'druid', 'fighter',
@@ -174,7 +172,7 @@ class Character:
 
             subrace: str; the Character's subrace as a string rather
             than a Subrace object. Default None
-            
+
             subrace_sub: str; the Character's subrace subcategory.
             Default None
 
@@ -226,29 +224,37 @@ class Character:
         elif level > 20:
             raise ValueError("'level' cannot be greater than 20.")
 
+        # Race Selection
+        race_instance = None
+
         # Validate supplied race, if any
         if race:
             if type(race) != str:
                 raise TypeError("'race' must be entered as a string.")
-            elif race.lower() not in cls.race_names:
+
+            valid_race = False
+            for one_race in cls.races:
+                if race.title() == one_race.name:
+                    race_instance = one_race
+                    valid_race = True
+                    break
+            if not valid_race:
                 raise NameError(f"'{race}' is not a valid race.")
-            else:
-                for one_race in cls.races:
-                    if race.title() == one_race.name:
-                        race = one_race
-                        break
 
         # Select race if not supplied
         else:
-            race = select(cls.races)
+            race_instance = select(cls.races)
+
+        # After validation/selection, assign race name
+        race = race_instance.name
 
         # Validate supplied subrace, if any
         if subrace:
-            if not race.subraces:
+            if not race_instance.subraces:
                 raise ValueError(f"'{race}' does not have subraces.")
             else:
                 valid_subrace = False
-                for one_subrace in race.subraces:
+                for one_subrace in race_instance.subraces:
                     if subrace.lower() == one_subrace.name.lower():
                         valid_subrace = True
                         subrace = one_subrace
@@ -259,8 +265,8 @@ class Character:
 
         # Select subrace if not supplied
         else:
-            if race.subraces:
-                subrace = select(race.subraces)
+            if race_instance.subraces:
+                subrace = select(race_instance.subraces)
 
         # Validate supplied subrace subcategory, if any
         if subrace_sub:
@@ -298,17 +304,20 @@ class Character:
         if age:
             if type(age) != int:
                 raise TypeError("'age' must be entered as an integer.")
-            elif not (race.age_range[0] <= age <= race.age_range[1]):
+            elif not (race_instance.age_range[0]
+                      <= age
+                      <= race_instance.age_range[1]):
                 raise ValueError(f"Age is out of range. Must be "
-                                 f"between {race.age_range[0]} and "
-                                 f"{race.age_range[1]} for '{race}'.")
+                                 f"between {race_instance.age_range[0]}"
+                                 f" and {race_instance.age_range[1]} "
+                                 f"for '{race_instance}'.")
 
         # Select age if not supplied
         else:
             if age_range_wide:
-                age = cls.age_select(*race.age_range)
+                age = cls.age_select(*race_instance.age_range)
             else:
-                age = cls.age_select(*race.age_range_prime)
+                age = cls.age_select(*race_instance.age_range_prime)
 
         # Validate supplied name, if any
         if name:
@@ -322,36 +331,37 @@ class Character:
             family_name = ''
 
             # Half-Elf, Half-Orc name selection
-            if race.name == 'Half-Elf' or race.name == 'Half-Orc':
-                name = select(race.names[gender])
+            if race_instance.name == 'Half-Elf'\
+                    or race_instance.name == 'Half-Orc':
+                name = select(race_instance.names[gender])
 
             # Tiefling name selection
-            elif race.name == 'Tiefling':
+            elif race_instance.name == 'Tiefling':
                 virtue = select([True, False])
                 if virtue:
-                    name = select(race.names['Virtue'])
+                    name = select(race_instance.names['Virtue'])
                 else:
-                    name = select(race.names[gender])
+                    name = select(race_instance.names[gender])
 
             # Subrace-specific name selection (Human)
-            elif race.name == 'Human':
+            elif race_instance.name == 'Human':
                 given_name = select(subrace.names[gender])
                 family_name = select(subrace.names['Family'])
 
             # Dwarf, Elf, Halfling, Dragonborn, Gnome name selection
-            elif race.names:
-                given_name = select(race.names[gender])
+            elif race_instance.names:
+                given_name = select(race_instance.names[gender])
 
                 # Elf child name selection
-                if race.name == 'Elf' and age < 100:
-                    given_name = select(race.names['Child'])
+                if race_instance.name == 'Elf' and age < 100:
+                    given_name = select(race_instance.names['Child'])
 
                 # Add Gnome nickname
-                if race.name == 'Gnome':
-                    nickname = select(race.names['Nickname'])
+                if race_instance.name == 'Gnome':
+                    nickname = select(race_instance.names['Nickname'])
                     given_name += f' ({nickname})'
 
-                family_name = select(race.names['Family'])
+                family_name = select(race_instance.names['Family'])
 
             # Otherwise, raise an error; something went wrong
             else:
@@ -360,11 +370,12 @@ class Character:
 
             # Construct name
             # Dragonborn name
-            if race.name == 'Dragonborn':
+            if race_instance.name == 'Dragonborn':
                 name = f'{family_name} {given_name}'
 
             # Other names
-            elif race.name not in ['Half-Elf', 'Half-Orc', 'Tiefling']:
+            elif race_instance.name not in ['Half-Elf', 'Half-Orc',
+                                            'Tiefling']:
                 name = f'{given_name} {family_name}'
 
         # Validate supplied alignment, if any
@@ -409,10 +420,11 @@ class Character:
         height_raw = 0
         weight_raw = 0
         if not height or not weight:
-            if race.name == 'Elf' or race.name == 'Dwarf':
+            if race_instance.name == 'Elf'\
+                    or race_instance.name == 'Dwarf':
                 formula = subrace.sizes
             else:
-                formula = race.sizes
+                formula = race_instance.sizes
             height_raw, weight_raw = cls.get_height_weight(**formula)
 
         # Determine height
