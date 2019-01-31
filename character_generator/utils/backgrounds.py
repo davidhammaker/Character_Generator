@@ -932,3 +932,90 @@ sailor = \
                ideals=_sailor_ideals,
                bonds=_sailor_bonds,
                flaws=_sailor_flaws)
+
+
+# Soldier
+# Soldier skill proficiencies
+_soldier_skill_profs = \
+    ['Athletics',
+     'Intimidation']
+
+# Soldier tool proficiencies
+_soldier_tool_profs = \
+    ['vehicles (land)']
+_soldier_tool_prof_selection = \
+    _gaming_sets
+
+# Soldier equipment
+_soldier_equipment = \
+    ['insignia of rank',
+     'common clothes']
+_soldier_equipment_selections = \
+    [['dagger (trophy taken from a fallen enemy',
+      'broken blade (trophy taken from a fallen enemy',
+      'piece of a banner (trophy taken from a fallen enemy'],
+     ['set of bone dice',
+      'deck of cards']]
+
+# Soldier selection
+_soldier_selection = \
+    ['Specialty: Officer',
+     'Specialty: Scout',
+     'Specialty: Infantry',
+     'Specialty: Cavalry',
+     'Specialty: Healer',
+     'Specialty: Quartermaster',
+     'Specialty: Standard bearer',
+     'Specialty: Support staff (cook, blacksmith, or the like)']
+
+# Soldier details
+_soldier_details = 'Feature: Military Rank (pg. 140)'
+
+# Soldier characteristics
+_soldier_personalities = \
+    ['I\'m always polite and respectful.',
+     'I\'m haunted by memories of war. I can\'t get the images of violence out of my head.',
+     'I\'ve lost too many friends, and I\'m slow to take new ones.',
+     'I\'m full of inspiring and cautionary tails from my military experience relevant to almost every combat situation.',
+     'I can stare down a hell hound without flinching.',
+     'I enjoy being strong and like breaking things.',
+     'I have a crude sense of humor.',
+     'I face problems head-on. A simple, direct solution is the best path to success.']
+_soldier_ideals = \
+    ['Greater Good. Our lot is to lay down our lives in defence of others. (Good)',
+     'Responsibility. I do what I must and obey just authority. (Lawful)',
+     'Independence. When people follow orders blindly, they embrace a kind of tyranny. (Chaotic)',
+     'Might. In life as in war, the stronger force wins. (Evil)',
+     'Live and Let Live. Ideals aren\'t worth killing over or going to war for. (Neutral)',
+     'Nation. My city, nation, or people are all that matter. (Any)']
+_soldier_bonds = \
+    ['I would still lay down my life for the people I served with.',
+     'Someone saved my life on the battlefield. To this day, I will never leave a friend behind.',
+     'My honor is my life.',
+     'I\'ll never forget the crushing defeat my company suffered or the enemies who dealt it.',
+     'Those who fight beside me are worth dying for.',
+     'I fight for those who cannot fight for themselves.']
+_soldier_flaws = \
+    ['The monstrous enemy we faced in battle still leaves me quivering with fear.',
+     'I have little respect for anyone who is not a proven warrior.',
+     'I made a terrible mistake in battle that cost many lives, and I would do anything to keep that mistake secret.',
+     'My hatred of my enemies is blind and unreasoning.',
+     'I obey the law, even if the law causes misery.',
+     'I\'d rather eat my armor than admit when I\'m wrong.']
+
+# Soldier Background
+soldier = \
+    Background(name='Soldier',
+               skill_profs=_soldier_skill_profs,
+               tool_profs=_soldier_tool_profs,
+               tool_prof_selection=_soldier_tool_prof_selection,
+               equipment=_soldier_equipment,
+               equipment_selections=_soldier_equipment_selections,
+               selections=_soldier_selection,
+               money=Money(gp=10),
+               languages=0,
+               details=_soldier_details,
+               personalities=_soldier_personalities,
+               ideals=_soldier_ideals,
+               bonds=_soldier_bonds,
+               flaws=_soldier_flaws)
