@@ -679,3 +679,89 @@ noble = \
                ideals=_noble_ideals,
                bonds=_noble_bonds,
                flaws=_noble_flaws)
+
+
+# Outlander
+# Outlander skill proficiencies
+_outlander_skill_profs = \
+    ['Athletics',
+     'Survival']
+
+# Outlander tool proficiencies
+_outlander_tool_profs = \
+    None
+_outlander_tool_prof_selection = \
+    _instruments
+
+# Outlander equipment
+_outlander_equipment = ['staff',
+                        'hunting trap',
+                        'trophy from an animal you killed',
+                        'traveler\'s clothes']
+_outlander_equipment_selections = \
+    None
+
+# Outlander selection
+_outlander_selection = \
+    ['Origin: Forester',
+     'Origin: Trapper',
+     'Origin: Homesteader',
+     'Origin: Guide',
+     'Origin: Exile or outcast',
+     'Origin: Bounty hunter',
+     'Origin: Pilgrim',
+     'Origin: Tribal nomad',
+     'Origin: Hunter-gatherer',
+     'Origin: Tribal marauder']
+
+# Outlander details
+_outlander_details = 'Feature: Wanderer (pg. 136)'
+
+# Outlander characteristics
+_outlander_personalities = \
+    ['I\'m driven by a wanderlust that led me away from my home.',
+     'I watch over my friends as if they were a litter of newborn pups.',
+     'I once ran twenty-five miles without stopping to warn my clan of an approaching orc horde. I\'d do it again if I had to.',
+     'I have a lesson for every situation, drawn from observing nature.',
+     'I place no stock in wealthy or well-mannered folk. Money and manners won\'t save you from a hungry owlbear.',
+     'I\'m always picking things up, absently fiddling with them, and sometimes accidentally breaking them.',
+     'I feel far more comfortable around animals than people.',
+     'I was, in fact, raised by wolves.']
+_outlander_ideals = \
+    ['Change. Life is like the seasons, in constant change, and we must change with it. (Chaotic)',
+     'Greater Good. It is each person\'s responsibility to make the most happiness for the whole tribe. (Good)',
+     'Honor. If I dishonor myself, I dishonor my whole clan. (Lawful)',
+     'Might. The strongest are meant to rule. (Evil)',
+     'Nature. The natural world is more important than all the constructs of civilization. (Neutral)',
+     'Glory. I must earn glory in battle, for myself and my clan. (Any)']
+_outlander_bonds = \
+    ['My family, clan, or tribe is the most important thing in my life, even when they are far from me.',
+     'An injury to the unspoiled wilderness of my home is an injury to me.',
+     'I will bring terrible wrath down on the evildoers who destroyed my homeland.',
+     'I am the last of my tribe, and it is up to me to ensure their names enter legend.',
+     'I suffer awful visions of a coming disaster and will do anything to prevent it.',
+     'It is my duty to provide children to sustain my tribe.']
+_outlander_flaws = \
+    ['I am too enamored of ale, wine, and other intoxicants.',
+     'There\'s no room for caution in a life lived to the fullest.',
+     'I remember every insult I\'ve received and nurse a silent resentment toward anyone who\'s ever wronged me.',
+     'I am slow to trust members of other races, tribes, and societies.',
+     'Violence is my answer to almost any challenge.',
+     'Don\'t expect me to save those who can\'t save themselves. It is nature\'s way that the strong thrive and the weak perish.']
+
+# Outlander Background
+outlander = \
+    Background(name='Outlander',
+               skill_profs=_outlander_skill_profs,
+               tool_profs=_outlander_tool_profs,
+               tool_prof_selection=_outlander_tool_prof_selection,
+               equipment=_outlander_equipment,
+               equipment_selections=_outlander_equipment_selections,
+               selections=_outlander_selection,
+               money=Money(gp=10),
+               languages=1,
+               details=_outlander_details,
+               personalities=_outlander_personalities,
+               ideals=_outlander_ideals,
+               bonds=_outlander_bonds,
+               flaws=_outlander_flaws)
