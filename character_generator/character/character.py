@@ -1,6 +1,6 @@
 from random import random
 from character_generator.utils.methods import select, roll
-from character_generator.utils.details import alignments, backgrounds
+from character_generator.utils.details import alignments
 from character_generator.utils.races import (dwarf, elf, halfling,
                                              human, dragonborn, gnome,
                                              half_elf, half_orc,
@@ -8,7 +8,21 @@ from character_generator.utils.races import (dwarf, elf, halfling,
 from character_generator.utils.klasses import (barbarian, bard, cleric,
                                                druid, fighter, monk,
                                                paladin, ranger, rogue,
-                                               sorcerer, warlock, wizard)
+                                               sorcerer, warlock,
+                                               wizard)
+from character_generator.utils.backgrounds import (acolyte,
+                                                   charlatan,
+                                                   criminal,
+                                                   entertainer,
+                                                   folkhero,
+                                                   guildartisan,
+                                                   hermit,
+                                                   noble,
+                                                   outlander,
+                                                   sage,
+                                                   sailor,
+                                                   soldier,
+                                                   urchin)
 
 
 class Character:
@@ -45,6 +59,9 @@ class Character:
     klasses_names = ['barbarian', 'bard', 'cleric', 'druid', 'fighter',
                      'monk', 'paladin', 'ranger', 'rogue', 'sorcerer',
                      'warlock', 'wizard']
+    backgrounds = [acolyte, charlatan, criminal, entertainer, folkhero,
+                   guildartisan, hermit, noble, outlander, sage, sailor,
+                   soldier, urchin]
 
     @staticmethod
     def age_select(minimum, maximum, median=-1):
@@ -487,16 +504,19 @@ class Character:
             if type(background) != str:
                 raise TypeError("'background' must be entered as a "
                                 "string.")
-            elif background.lower() not in backgrounds:
+            valid_background = False
+            for one_background in cls.backgrounds:
+                if background.title() == one_background.name:
+                    valid_background = True
+                    background = one_background
+                    break
+            if not valid_background:
                 raise NameError(f"'{background}' is not a valid "
                                 f"background.")
-            else:
-                background = background.title()
 
         # Select background if not supplied
         else:
-            background = select(backgrounds)
-            background = background.title()
+            background = select(cls.backgrounds)
 
         # Put it all together
         return cls(name=name,
