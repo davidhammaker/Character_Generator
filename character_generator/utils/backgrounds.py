@@ -765,3 +765,89 @@ outlander = \
                ideals=_outlander_ideals,
                bonds=_outlander_bonds,
                flaws=_outlander_flaws)
+
+
+# Sage
+# Sage skill proficiencies
+_sage_skill_profs = \
+    ['Arcana',
+     'History']
+
+# Sage tool proficiencies
+_sage_tool_profs = \
+    None
+_sage_tool_prof_selection = \
+    None
+
+# Sage equipment
+_sage_equipment = \
+    ['bottle of black ink',
+     'quill',
+     'small knife',
+     'letter from a dead colleague posing a question you have not yet been able to answer',
+     'common clothes']
+_sage_equipment_selections = \
+    None
+
+# Sage selection
+_sage_selection = \
+    ['Specialty: Alchemist',
+     'Specialty: Astronomer',
+     'Specialty: Discredited academic',
+     'Specialty: Librarian',
+     'Specialty: Professor',
+     'Specialty: Researcher',
+     'Specialty: Wizard\'s apprentice',
+     'Specialty: Scribe']
+
+# Sage details
+_sage_details = 'Feature: Researcher (pg. 138)'
+
+# Sage characteristics
+_sage_personalities = \
+    ['I use polysyllabic words that convey the impression of great erudition.',
+     'I\'ve read every book in the world\'s greatest libraries--or I like to boast that I have.',
+     'I\'m used to helping out those who aren\'t as smart as I am, and I patiently explain anything and everything to others.',
+     'There\'s nothing I like more than a good mystery.',
+     'I\'m willing to listen to every side of an argument before I make my own judgement.',
+     'I ... speak ... slowly ... when talking ... to idiots, ... which ... almost ... everyone ... is ... compared ... to me.',
+     'I am horribly, horribly awkward in social situations.',
+     'I\'m convinced that people are always trying to steal my secrets.']
+_sage_ideals = \
+    ['Knowledge. The path to power and self-improvement is through knowledge. (Neutral)',
+     'Beauty. What is beautiful points us beyond itself toward what is true. (Good)',
+     'Logic. Emotions must not cloud our logical thinking. (Lawful)',
+     'No Limits. Nothing should fetter the infinite possiblility inherent in all existence. (Chaotic)',
+     'Power. Knowledge is the path to power and domination. (Evil)',
+     'Self-Improvement. The goal of a life of study is the betterment of oneself. (Any)']
+_sage_bonds = \
+    ['It is my duty to protect my students.',
+     'I have an ancient text that holds terrible secrets that must not fall into the wrong hands.',
+     'I work to preserve a library, university, scriptorium, or monastery.',
+     'My life\'s work is a series of tomes related to a specific field of lore.',
+     'I\'ve been searching my whole life for the answer to a certain question.',
+     'I sold my soul for knowledge. I hope to do great deeds and win it back.']
+_sage_flaws = \
+    ['I am easily distracted by the promise of information.',
+     'Most people scream and run when they see a demon. I stop and take notes on its anatomy.',
+     'Unlocking an ancient mystery is worth the price of a civilization.',
+     'I overlook obvious solutions in favor of complicated ones.',
+     'I speak without really thinking through my words, invariably insulting others.',
+     'I can\'t keep a secret to save my life, or anyone else\'s.']
+
+# Sage Background
+sage = \
+    Background(name='Sage',
+               skill_profs=_sage_skill_profs,
+               tool_profs=_sage_tool_profs,
+               tool_prof_selection=_sage_tool_prof_selection,
+               equipment=_sage_equipment,
+               equipment_selections=_sage_equipment_selections,
+               selections=_sage_selection,
+               money=Money(gp=10),
+               languages=2,
+               details=_sage_details,
+               personalities=_sage_personalities,
+               ideals=_sage_ideals,
+               bonds=_sage_bonds,
+               flaws=_sage_flaws)
