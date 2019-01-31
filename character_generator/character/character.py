@@ -174,6 +174,9 @@ class Character:
 
             subrace: str; the Character's subrace as a string rather
             than a Subrace object. Default None
+            
+            subrace_sub: str; the Character's subrace subcategory.
+            Default None
 
             gender: str; the Character's gender. Default None
 
