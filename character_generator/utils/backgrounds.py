@@ -604,3 +604,83 @@ hermit = \
                ideals=_hermit_ideals,
                bonds=_hermit_bonds,
                flaws=_hermit_flaws)
+
+
+# Noble
+# Noble skill proficiencies
+_noble_skill_profs = \
+    ['History',
+     'Persuasion']
+
+# Noble tool proficiencies
+_noble_tool_profs = \
+    None
+_noble_tool_prof_selection = \
+    ['dice set',
+     'dragonchess set',
+     'playing card set',
+     'Three-Dragon Ante set']
+
+# Noble equipment
+_noble_equipment = \
+    ['fine clothes',
+     'signet ring',
+     'scroll of pedigree']
+_noble_equipment_selections = \
+    None
+
+# Noble selection
+_noble_selection = \
+    None
+
+# Noble details
+_noble_details = 'Feature: Position of Privilege (pg. 135)'
+
+# Noble characteristics
+_noble_personalities = \
+    ['My eloquent flattery makes everyone I talk to feel like the most wonderful and important person in the world.',
+     'The common folk love me for my kindness and generosity.',
+     'No one could doubt by looking at my regal bearing that I am a cut above the unwashed masses.',
+     'I take great pains to always look my best and follow the latest fashions.',
+     'I don\'t like getting my hands dirty, and I won\'t be caught dead in unsuitable accommodations.',
+     'Despite my noble birth, I do not place myself above other folk. We all have the same blood.',
+     'My favor, once lost, is lost forever.',
+     'If you do me an injury, I will crush you, ruin your name, and salt your fields.']
+_noble_ideals = \
+    ['Respect. Respect is due to me because of my position, but all people regardless of station deserve to be treated with dignity. (Good)',
+     'Responsibility. It is my duty to respect the authority of those above me, just as those below me must respect mine. (Lawful)',
+     'Independence. I must prove that I can handle myself without the coddling of my family. (Chaotic)',
+     'Power. If I can attain more power, no one will tell me what to do. (Evil)',
+     'Family. Blood runs thicker than water. (Any)',
+     'Noble Obligation. It is my duty to protect and care for the people beneath me. (Good)']
+_noble_bonds = \
+    ['I will face any challenge to win the approval of my family.',
+     'My house\'s alliance with another noble family must be sustained at all costs.',
+     'Nothing is more important than the other members of my family.',
+     'I am in love with the heir of a family that my family dispises.',
+     'My loyalty to my sovereign is unwavering.',
+     'The common folk must see me as a hero of the people.']
+_noble_flaws = \
+    ['I secretly believe that everyone is beneath me.',
+     'I hide a truly scandalous secret that could ruin my family forever.',
+     'I too often hear veiled insults and threats in every word addressed to me, and I\'m quick to anger.',
+     'I have an insatiable desire for carnal pleasures.',
+     'In fact, the world does revolve around me.',
+     'By my words and actions, I often bring shame to my family.']
+
+# Noble Background
+noble = \
+    Background(name='Noble',
+               skill_profs=_noble_skill_profs,
+               tool_profs=_noble_tool_profs,
+               tool_prof_selection=_noble_tool_prof_selection,
+               equipment=_noble_equipment,
+               equipment_selections=_noble_equipment_selections,
+               selections=_noble_selection,
+               money=Money(gp=25),
+               languages=1,
+               details=_noble_details,
+               personalities=_noble_personalities,
+               ideals=_noble_ideals,
+               bonds=_noble_bonds,
+               flaws=_noble_flaws)
