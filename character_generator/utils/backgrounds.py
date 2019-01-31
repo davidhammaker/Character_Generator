@@ -61,7 +61,7 @@ _acolyte_ideals = \
      'Change. We must help bring about the changes the gods are constantly working in the world. (Chaotic)',
      'Power. I hope to one day rise to the top of my faith\'s religious hierarchy. (Lawful)',
      'Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well. (Lawful)',
-     'Aspiration. I seek to prove myself worthy of my god\'s favor by matching my actions against his or her teachings.']
+     'Aspiration. I seek to prove myself worthy of my god\'s favor by matching my actions against his or her teachings. (Any)']
 _acolyte_bonds = \
     ['I would die to recover an ancient relic of my faith that was lost long ago.',
      'I will someday get revenge on the corrupt temple hierarchy who branded me a heretic.',
@@ -139,7 +139,7 @@ _charlatan_ideals = \
      'Charity. I distribute the money I acquire to the people who really need it. (Good)',
      'Creativity. I never run the same con twice. (Chaotic)',
      'Friendship. Material goods come and go. Bonds of friendship last forever. (Good)',
-     'Aspiration. I\'m determined to make something of myself.']
+     'Aspiration. I\'m determined to make something of myself. (Any)']
 _charlatan_bonds = \
     ['I fleeced the wrong person and must work to ensure that this individual never crosses paths with me or those I care about.',
      'I owe everything to my mentor--a horrible person who\'s probably rotting in jail somewhere.',
