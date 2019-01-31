@@ -1,5 +1,36 @@
 from character_generator.utils.classes import Background, Money
 
+# Items common to more than one Background
+_instruments = \
+    ['bagpipes',
+     'drum',
+     'dulcimer',
+     'fluit',
+     'lute',
+     'lyre',
+     'horn',
+     'pan flute',
+     'shawm',
+     'viol']
+_artisan_tools = \
+    ['alchemist\'s supplies',
+     'brewer\'s supplies',
+     'calligrapher\'s supplies',
+     'carpenter\'s tools',
+     'cartographer\'s tools',
+     'cobbler\'s tools',
+     'cook\'s utensils',
+     'glassblower\'s tools',
+     'jeweler\'s tools',
+     'leatherworker\'s tools',
+     'mason\'s tools',
+     'painter\'s supplies',
+     'potter\'s tools',
+     'smith\'s tools',
+     'tinker\'s tools',
+     'weaver\'s tools',
+     'woodcarver\'s tools']
+
 # Acolyte
 # Acolyte skill proficiencies
 _acolyte_skill_profs = ['Insight',
@@ -62,6 +93,7 @@ acolyte = \
                ideals=_acolyte_ideals,
                bonds=_acolyte_bonds,
                flaws=_acolyte_flaws)
+
 
 # Charlatan
 # Charlatan skill proficiencies
@@ -139,6 +171,7 @@ charlatan = \
                ideals=_charlatan_ideals,
                bonds=_charlatan_bonds,
                flaws=_charlatan_flaws)
+
 
 # Criminal
 # Criminal skill proficiencies
@@ -221,6 +254,7 @@ criminal = \
                bonds=_criminal_bonds,
                flaws=_criminal_flaws)
 
+
 # Entertainer
 # Entertainer skill proficiencies
 _entertainer_skill_profs = \
@@ -231,16 +265,7 @@ _entertainer_skill_profs = \
 _entertainer_tool_profs = \
     ['disguise kit']
 _entertainer_tool_prof_selection = \
-    ['bagpipes',
-     'drum',
-     'dulcimer',
-     'fluit',
-     'lute',
-     'lyre',
-     'horn',
-     'pan flute',
-     'shawm',
-     'viol']
+    _instruments
 
 # Entertainer equipment
 _entertainer_equipment = ['costume']
@@ -315,6 +340,7 @@ entertainer = \
                bonds=_entertainer_bonds,
                flaws=_entertainer_flaws)
 
+
 # Folk Hero
 # Folk Hero skill proficiencies
 _folkhero_skill_profs = \
@@ -325,23 +351,7 @@ _folkhero_skill_profs = \
 _folkhero_tool_profs = \
     ['vehicles (land)']
 _folkhero_tool_prof_selection = \
-    ['alchemist\'s supplies',
-     'brewer\'s supplies',
-     'calligrapher\'s supplies',
-     'carpenter\'s tools',
-     'cartographer\'s tools',
-     'cobbler\'s tools',
-     'cook\'s utensils',
-     'glassblower\'s tools',
-     'jeweler\'s tools',
-     'leatherworker\'s tools',
-     'mason\'s tools',
-     'painter\'s supplies',
-     'potter\'s tools',
-     'smith\'s tools',
-     'tinker\'s tools',
-     'weaver\'s tools',
-     'woodcarver\'s tools']
+    _artisan_tools
 
 # Folk Hero equipment
 _folkhero_equipment = ['shovel', 'iron pot', 'common clothes']
@@ -413,6 +423,7 @@ folkhero = \
                bonds=_folkhero_bonds,
                flaws=_folkhero_flaws)
 
+
 # Guild Artisan
 # Guild Artisan skill proficiencies
 _guildartisan_skill_profs = \
@@ -421,23 +432,7 @@ _guildartisan_skill_profs = \
 
 # Guild Artisan tool proficiencies
 _guildartisan_tool_prof_selection = \
-    ['alchemist\'s supplies',
-     'brewer\'s supplies',
-     'calligrapher\'s supplies',
-     'carpenter\'s tools',
-     'cartographer\'s tools',
-     'cobbler\'s tools',
-     'cook\'s utensils',
-     'glassblower\'s tools',
-     'jeweler\'s tools',
-     'leatherworker\'s tools',
-     'mason\'s tools',
-     'painter\'s supplies',
-     'potter\'s tools',
-     'smith\'s tools',
-     'tinker\'s tools',
-     'weaver\'s tools',
-     'woodcarver\'s tools']
+    _artisan_tools
 
 # Guild Artisan equipment
 _guildartisan_equipment = \
