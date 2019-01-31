@@ -248,6 +248,9 @@ class Character:
         # After validation/selection, assign race name
         race = race_instance.name
 
+        # Subrace Selection
+        subrace_instance = None
+
         # Validate supplied subrace, if any
         if subrace:
             if not race_instance.subraces:
@@ -257,7 +260,7 @@ class Character:
                 for one_subrace in race_instance.subraces:
                     if subrace.lower() == one_subrace.name.lower():
                         valid_subrace = True
-                        subrace = one_subrace
+                        subrace_instance = one_subrace
                         break
                 if not valid_subrace:
                     raise NameError(f"'{subrace}' is not a valid "
@@ -266,27 +269,31 @@ class Character:
         # Select subrace if not supplied
         else:
             if race_instance.subraces:
-                subrace = select(race_instance.subraces)
+                subrace_instance = select(race_instance.subraces)
+
+        # After validation/selection, assign subrace name
+        if subrace_instance:
+            subrace = subrace_instance.name
 
         # Validate supplied subrace subcategory, if any
         if subrace_sub:
             if type(subrace_sub) != str:
                 raise TypeError("'subrace_sub' must be entered as a "
                                 "string.")
-            elif subrace_sub.title() not in subrace.subcategories:
+            elif subrace_sub.title() not in subrace_instance.subcategories:
                 raise NameError(f"'{subrace_sub}' is not a valid "
-                                f"subcategory of '{subrace.name}'.")
+                                f"subcategory of '{subrace}'.")
             else:
-                for one_subrace_sub in subrace.subcategories:
+                for one_subrace_sub in subrace_instance.subcategories:
                     if subrace_sub.title() == one_subrace_sub:
                         subrace_sub = one_subrace_sub
                         break
 
         # Select subrace subcategory if not supplied
         else:
-            if subrace:
-                if subrace.subcategories:
-                    subrace_sub = select(subrace.subcategories)
+            if subrace_instance:
+                if subrace_instance.subcategories:
+                    subrace_sub = select(subrace_instance.subcategories)
 
         # Validate supplied gender, if any
         if gender:
@@ -345,8 +352,8 @@ class Character:
 
             # Subrace-specific name selection (Human)
             elif race_instance.name == 'Human':
-                given_name = select(subrace.names[gender])
-                family_name = select(subrace.names['Family'])
+                given_name = select(subrace_instance.names[gender])
+                family_name = select(subrace_instance.names['Family'])
 
             # Dwarf, Elf, Halfling, Dragonborn, Gnome name selection
             elif race_instance.names:
@@ -422,7 +429,7 @@ class Character:
         if not height or not weight:
             if race_instance.name == 'Elf'\
                     or race_instance.name == 'Dwarf':
-                formula = subrace.sizes
+                formula = subrace_instance.sizes
             else:
                 formula = race_instance.sizes
             height_raw, weight_raw = cls.get_height_weight(**formula)
