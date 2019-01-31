@@ -440,7 +440,8 @@ _guildartisan_tool_prof_selection = \
      'woodcarver\'s tools']
 
 # Guild Artisan equipment
-_guildartisan_equipment = ['letter of introduction from your guild', 'traveler\'s clothes']
+_guildartisan_equipment = \
+    ['letter of introduction from your guild', 'traveler\'s clothes']
 _guildartisan_equipment_selections = \
     [[tool for tool in _guildartisan_tool_prof_selection]]
 
@@ -518,3 +519,88 @@ guildartisan = \
                ideals=_guildartisan_ideals,
                bonds=_guildartisan_bonds,
                flaws=_guildartisan_flaws)
+
+
+# Hermit
+# Hermit skill proficiencies
+_hermit_skill_profs = \
+    ['Medicine',
+     'Religion']
+
+# Hermit tool proficiencies
+_hermit_tool_profs = \
+    ['herbalism kit']
+_hermit_tool_prof_selection = \
+    None
+
+# Hermit equipment
+_hermit_equipment = \
+    ['scroll case stuffed full of notes from your studies or prayers',
+     'winter blanket',
+     'common clothes',
+     'herbalism kit']
+_hermit_equipment_selections = \
+    None
+
+# Hermit selection
+_hermit_selection = \
+    ['Life of Seclusion: I was searching for spiritual enlightenment.',
+     'Life of Seclusion: I was partaking of communal living in accordance with the dictates of a religious order.',
+     'Life of Seclusion: I was exiled for a crime I didn\'t commit.',
+     'Life of Seclusion: I retreated from society after a life-altering event.',
+     'Life of Seclusion: I needed a quiet place to work on my art, literature, music, or manifesto.',
+     'Life of Seclusion: I needed to commune with nature, far from civilization.',
+     'Life of Seclusion: I was the caretaker of an ancient ruin or relic.',
+     'Life of Seclusion: I was a pilgrim in search of a person, place, or relic of spiritual significance.']
+
+# Hermit details
+_hermit_details = 'Feature: Discovery (pg. 134)'
+
+# Hermit characteristics
+_hermit_personalities = \
+    ['I\'ve been isolated for so long that I rarely speak, preferring gestures and the occasional grunt.',
+     'I am utterly serene, even in the face of disaster.',
+     'The leader of my community had something wise to say on every topic, and I am eager to share that wisdom.',
+     'I feel tremendous empathy for all who suffer.',
+     'I\'m oblivious to etiquette and social expectations.',
+     'I connect everything that happens to me to a grand, cosmic plan.',
+     'I often get lost in my own thoughts and contemplation, becoming oblivious to my surroundings.',
+     'I am working on a grand philosophical theory and love sharing my ideas.']
+_hermit_ideals = \
+    ['Greater Good. My gifts are meant to be shared with all, not used for my own benefit. (Good)',
+     'Logic. Emotions must not cloud our sense of what is right and true, or our logical thinking. (Lawful)',
+     'Free Thinking. Inquiry and curiosity are the pillars of progress. (Chaotic)',
+     'Power. Solitude and contemplation are paths toward mystical or magical power. (Evil)',
+     'Live and Let Liv. Meddling in the affairs of others only causes trouble. (Neutral)',
+     'Self-Knowledge. If you know yourself, there\'s nothing left to know. (Any)']
+_hermit_bonds = \
+    ['Nothing is more important than the members of my hermitage, order, or association.',
+     'I entered seclusion to hide from the ones who might still be hunting me. I must someday confront them.',
+     'I\'m still seeking the enlightenment I pursued in my seclusion, and it still eludes me.',
+     'I entered seclusion because I loved someone I could not have.',
+     'Should my discovery come to light, it could bring ruin to the world.',
+     'My isolation gave me great insight into a great evil that only I can destroy.']
+_hermit_flaws = \
+    ['Now that I\'ve returned to the world, I enjoy its delights a little too much.',
+     'I harbor dark, bloodthirsty thoughts that my isolation and meditation failed to quell.',
+     'I am dogmatic in my thoughts and philosophy.',
+     'I let my need to win arguments overshadow friendships and harmony.',
+     'I\'d risk too much to uncover a lost bit of knowledge.',
+     'I like keeping secrets and won\'t share them with anyone.']
+
+# Hermit Background
+hermit = \
+    Background(name='Hermit',
+               skill_profs=_hermit_skill_profs,
+               tool_profs=_hermit_tool_profs,
+               tool_prof_selection=_hermit_tool_prof_selection,
+               equipment=_hermit_equipment,
+               equipment_selections=_hermit_equipment_selections,
+               selections=_hermit_selection,
+               money=Money(gp=5),
+               languages=1,
+               details=_hermit_details,
+               personalities=_hermit_personalities,
+               ideals=_hermit_ideals,
+               bonds=_hermit_bonds,
+               flaws=_hermit_flaws)
