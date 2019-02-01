@@ -55,18 +55,6 @@ class Character:
         self.wisdom = wisdom
         self.charisma = charisma
 
-        # Calculated attributes
-        # Proficiency bonus
-        if level <= 4:
-            self.proficiency_bonus = 2
-        elif level <= 8:
-            self.proficiency_bonus = 3
-        elif level <= 12:
-            self.proficiency_bonus = 4
-        elif level <= 16:
-            self.proficiency_bonus = 5
-        else:
-            self.proficiency_bonus = 6
 
     def __repr__(self):
         return f"Character('{self.name}', '{self.race}', " \
@@ -79,6 +67,21 @@ class Character:
     backgrounds = [acolyte, charlatan, criminal, entertainer, folkhero,
                    guildartisan, hermit, noble, outlander, sage, sailor,
                    soldier, urchin]
+
+    # Calculated attributes
+    # Proficiency bonus
+    @property
+    def proficiency_bonus(self):
+        if self.level <= 4:
+            return 2
+        elif self.level <= 8:
+            return 3
+        elif self.level <= 12:
+            return 4
+        elif self.level <= 16:
+            return 5
+        else:
+            return 6
 
     @staticmethod
     def age_select(minimum, maximum, median=-1):
