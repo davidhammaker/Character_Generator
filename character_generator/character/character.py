@@ -47,8 +47,8 @@ class Character:
         self.level = level
 
     def __repr__(self):
-        return f"Character('{self.name}', '{self.race.name}', " \
-               f"'{self.klass.name}')"
+        return f"Character('{self.name}', '{self.race}', " \
+               f"'{self.klass}')"
 
     races = [dwarf, elf, halfling, human, dragonborn, gnome, half_elf,
              half_orc, tiefling]
