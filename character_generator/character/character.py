@@ -30,7 +30,10 @@ class Character:
 
     def __init__(self, name, race, height, weight, alignment, klass,
                  background, gender, age, subrace=None, archetype=None,
-                 archetype_sub=None, subrace_sub=None, level=1):
+                 archetype_sub=None, subrace_sub=None, level=1,
+                 strength=0, dexterity=0, constitution=0,
+                 intelligence=0, wisdom=0, charisma=0,
+                 proficiencies=None, saving_throws=None, skills=None):
         self.name = name
         self.race = race
         self.subrace = subrace
@@ -45,6 +48,25 @@ class Character:
         self.archetype = archetype
         self.archetype_sub = archetype_sub
         self.level = level
+        self.strength = strength
+        self.dexterity = dexterity
+        self.constitution = constitution
+        self.intelligence = intelligence
+        self.wisdom = wisdom
+        self.charisma = charisma
+
+        # Calculated attributes
+        # Proficiency bonus
+        if level <= 4:
+            self.proficiency_bonus = 2
+        elif level <= 8:
+            self.proficiency_bonus = 3
+        elif level <= 12:
+            self.proficiency_bonus = 4
+        elif level <= 16:
+            self.proficiency_bonus = 5
+        else:
+            self.proficiency_bonus = 6
 
     def __repr__(self):
         return f"Character('{self.name}', '{self.race}', " \
