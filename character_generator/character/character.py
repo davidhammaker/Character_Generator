@@ -54,9 +54,6 @@ class Character:
              half_orc, tiefling]
     klasses = [barbarian, bard, cleric, druid, fighter, monk, paladin,
                ranger, rogue, sorcerer, warlock, wizard]
-    klasses_names = ['barbarian', 'bard', 'cleric', 'druid', 'fighter',
-                     'monk', 'paladin', 'ranger', 'rogue', 'sorcerer',
-                     'warlock', 'wizard']
     backgrounds = [acolyte, charlatan, criminal, entertainer, folkhero,
                    guildartisan, hermit, noble, outlander, sage, sailor,
                    soldier, urchin]
