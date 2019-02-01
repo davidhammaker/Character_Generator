@@ -55,7 +55,6 @@ class Character:
         self.wisdom = wisdom
         self.charisma = charisma
 
-
     def __repr__(self):
         return f"Character('{self.name}', '{self.race}', " \
                f"'{self.klass}')"
@@ -82,6 +81,31 @@ class Character:
             return 5
         else:
             return 6
+
+    # Modifiers
+    @property
+    def strength_modifier(self):
+        return int((self.strength - 10) // 2)
+
+    @property
+    def dexterity_modifier(self):
+        return int((self.dexterity - 10) // 2)
+
+    @property
+    def constitution_modifier(self):
+        return int((self.constitution - 10) // 2)
+
+    @property
+    def intelligence_modifier(self):
+        return int((self.intelligence - 10) // 2)
+
+    @property
+    def wisdom_modifier(self):
+        return int((self.wisdom - 10) // 2)
+
+    @property
+    def charisma_modifier(self):
+        return int((self.charisma - 10) // 2)
 
     @staticmethod
     def age_select(minimum, maximum, median=-1):
