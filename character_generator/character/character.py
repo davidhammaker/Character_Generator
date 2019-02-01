@@ -280,7 +280,8 @@ class Character:
             if type(subrace_sub) != str:
                 raise TypeError("'subrace_sub' must be entered as a "
                                 "string.")
-            elif subrace_sub.title() not in subrace_instance.subcategories:
+            elif (subrace_sub.title() not in
+                  subrace_instance.subcategories):
                 raise NameError(f"'{subrace_sub}' is not a valid "
                                 f"subcategory of '{subrace}'.")
             else:
@@ -451,38 +452,50 @@ class Character:
             weight_raw = weight
         weight = f'{weight_raw} lb.'
 
+        # Klass Selection
+        klass_instance = None
+
         # Validate supplied klass, if any
         if klass:
             if type(klass) != str:
                 raise TypeError("'klass' must be entered as a string.")
-            elif klass.lower() not in cls.klasses_names:
+
+            valid_klass = False
+            for one_klass in cls.klasses:
+                if klass.title() == one_klass.name:
+                    valid_klass = True
+                    klass_instance = one_klass
+                    break
+            if not valid_klass:
                 raise NameError(f"'{klass}' is not a valid klass.")
-            else:
-                for one_klass in cls.klasses:
-                    if klass.title() == one_klass.name:
-                        klass = one_klass
-                        break
 
         # Select klass if not supplied
         else:
-            klass = select(cls.klasses)
+            klass_instance = select(cls.klasses)
+
+        # After validation/selection, assign klass name
+        klass = klass_instance.name
+
+        # Archetype Selection
+        archetype_instance = None
 
         # Validate supplied archetype, if any
         if archetype:
             if type(archetype) != str:
                 raise TypeError("'archetype' must be entered as a "
                                 "string.")
-            elif klass.archetype_level_req:
-                if level < klass.archetype_level_req:
-                    raise ValueError(f"'{klass.name}' restricts "
-                                     f"archetypes to level "
-                                     f"{klass.archetype_level_req} and "
-                                     f"higher.")
+            elif klass_instance.archetype_level_req:
+                if level < klass_instance.archetype_level_req:
+                    raise ValueError(
+                        f"'{klass}' restricts "
+                        f"archetypes to level "
+                        f"{klass_instance.archetype_level_req} and "
+                        f"higher.")
             valid_archetype = False
-            for one_archetype in klass.archetypes:
+            for one_archetype in klass_instance.archetypes:
                 if archetype.title() == one_archetype.name.title():
                     valid_archetype = True
-                    archetype = one_archetype
+                    archetype_instance = one_archetype
                     break
             if not valid_archetype:
                 raise NameError(f"'{archetype}' is not a valid "
@@ -490,9 +503,16 @@ class Character:
 
         # Select archetype if not supplied
         else:
-            if klass.archetype_level_req:
-                if level >= klass.archetype_level_req:
-                    archetype = select(klass.archetypes)
+            if klass_instance.archetype_level_req:
+                if level >= klass_instance.archetype_level_req:
+                    archetype_instance = select(
+                        klass_instance.archetypes)
+            else:
+                archetype_instance = select(klass_instance.archetypes)
+
+        # After validation/selection, assign archetype name
+        if archetype_instance:
+            archetype = archetype_instance.name
 
         # Validate archetype subcategory, if supplied
         if archetype_sub:
@@ -502,12 +522,13 @@ class Character:
             elif not archetype:
                 raise AttributeError("A non-existent archetype cannot "
                                      "have a subcategory.")
-            elif not archetype.subcategories:
-                raise AttributeError(f"'{archetype.name}' has no "
+            elif not archetype_instance.subcategories:
+                raise AttributeError(f"'{archetype}' has no "
                                      f"subcategories.")
             else:
                 valid_archetype_sub = False
-                for one_archetype_sub in archetype.subcategories:
+                for one_archetype_sub in (
+                        archetype_instance.subcategories):
                     if archetype_sub.title() == one_archetype_sub:
                         valid_archetype_sub = True
                         archetype_sub = one_archetype_sub
@@ -518,8 +539,9 @@ class Character:
 
         # Select archetype subcategory if not supplied
         elif archetype:
-            if archetype.subcategories:
-                archetype_sub = select(archetype.subcategories)
+            if archetype_instance.subcategories:
+                archetype_sub = select(
+                    archetype_instance.subcategories)
 
         # Validate supplied background, if any
         if background:
